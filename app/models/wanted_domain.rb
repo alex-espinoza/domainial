@@ -1,0 +1,2 @@
+class WantedDomain < ApplicationRecord
+end

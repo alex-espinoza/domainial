@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  tld: MyString
+  status: MyString
+  first_registered: 2016-09-27 18:08:18
+  last_updated: 2016-09-27 18:08:18
+  expiry: 2016-09-27 18:08:18
+  grace_period_ends: 2016-09-27 18:08:18
+  backorder: MyString
+  owner_name: MyString
+  organization_name: MyString
+
+two:
+  name: MyString
+  tld: MyString
+  status: MyString
+  first_registered: 2016-09-27 18:08:18
+  last_updated: 2016-09-27 18:08:18
+  expiry: 2016-09-27 18:08:18
+  grace_period_ends: 2016-09-27 18:08:18
+  backorder: MyString
+  owner_name: MyString
+  organization_name: MyString

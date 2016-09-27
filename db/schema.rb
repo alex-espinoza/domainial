@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160927220817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "wanted_domains", force: :cascade do |t|
+    t.string   "name",                   null: false
+    t.string   "tld",                    null: false
+    t.integer  "checked?",               null: false
+    t.string   "status"
+    t.datetime "first_registered_date"
+    t.datetime "last_updated_date"
+    t.datetime "expiry_date"
+    t.datetime "grace_period_ends_date"
+    t.string   "backorder"
+    t.string   "owner_name"
+    t.string   "organization_name"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end

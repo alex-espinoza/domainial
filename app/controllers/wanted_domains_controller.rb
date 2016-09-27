@@ -1,0 +1,2 @@
+class WantedDomainsController < ApplicationController
+end
