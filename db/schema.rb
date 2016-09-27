@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160927220817) do
     t.string   "organization_name"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.index ["name"], name: "index_wanted_domains_on_name", unique: true, using: :btree
   end
 
 end

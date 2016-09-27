@@ -15,5 +15,7 @@ class CreateWantedDomains < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index :wanted_domains, :name, unique: true
   end
 end
