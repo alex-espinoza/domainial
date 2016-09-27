@@ -3,7 +3,7 @@ class CreateWantedDomains < ActiveRecord::Migration[5.0]
     create_table :wanted_domains do |t|
       t.string :name, null: false
       t.string :tld, null: false
-      t.integer :checked?, null: false
+      t.integer :checked?, null: false, default: 0
       t.string :status
       t.datetime :first_registered_date
       t.datetime :last_updated_date
