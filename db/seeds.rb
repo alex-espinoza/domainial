@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+WantedDomain.create(name: 'portal', tld: '.io')
+WantedDomain.create(name: 'tether', tld: '.io')
