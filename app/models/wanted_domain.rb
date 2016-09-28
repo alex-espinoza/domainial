@@ -6,4 +6,12 @@ class WantedDomain < ApplicationRecord
   def name_with_tld
     "#{self.name}#{self.tld}"
   end
+
+  def is_available_class
+    self.status_code == 1 ? 'table-success' : ''
+  end
+
+  def pretty_date(datetime)
+    (datetime && datetime.to_formatted_s(:long)) || ''
+  end
 end
