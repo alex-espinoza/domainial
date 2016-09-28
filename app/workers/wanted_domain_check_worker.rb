@@ -2,7 +2,7 @@ class WantedDomainCheckWorker
   include HTTParty
   include Shoryuken::Worker
   base_uri 'http://nic.io/go/whois'
-  shoryuken_options queue: 'wanted_domain_check_availability',
+  shoryuken_options queue: ENV['wanted_domain_check_availability'],
                     auto_delete: true,
                     body_parser: :json,
                     retry_intervals: 3600
