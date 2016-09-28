@@ -4,7 +4,7 @@ namespace :wanted_domains do
     domains_to_be_checked = WantedDomain.where(checked?: [0, 2])
 
     domains_to_be_checked.each do |domain|
-      WantedDomainCheckWorker.perform_async(domain.id)
+      WantedDomainCheckWorker.perform_async(domain_id: domain.id)
     end
   end
 end

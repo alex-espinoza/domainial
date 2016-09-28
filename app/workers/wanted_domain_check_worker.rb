@@ -1,9 +1,14 @@
 class WantedDomainCheckWorker
   include HTTParty
+  include Shoryuken::Worker
   base_uri 'http://nic.io/go/whois'
+  shoryuken_options queue: 'wanted_domain_check_availability',
+                    auto_delete: true,
+                    body_parser: :json,
+                    retry_intervals: 3600
 
-  def perform(domain_id)
-    domain = WantedDomain.find(domain_id)
+  def perform(sqs_message, data)
+    domain = WantedDomain.find(data['domain_id'])
 
     response = make_http_request(domain)
     page_content = get_page_content(response)
