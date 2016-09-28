@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927220817) do
+ActiveRecord::Schema.define(version: 20160928011241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160927220817) do
     t.string   "organization_name"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "status_code"
     t.index ["name"], name: "index_wanted_domains_on_name", unique: true, using: :btree
   end
 
