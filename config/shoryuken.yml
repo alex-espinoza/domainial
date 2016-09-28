@@ -2,7 +2,7 @@ aws:
   access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
   secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
   region: <%= ENV["AWS_REGION"] %>
-
+delay: 5
 queues:
   - wanted_domain_check_availability
   - wanted_domain_check_availability_dev

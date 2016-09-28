@@ -2,7 +2,7 @@ class WantedDomainCheckWorker
   include HTTParty
   include Shoryuken::Worker
   base_uri 'http://nic.io/go/whois'
-  shoryuken_options queue: ENV['wanted_domain_check_availability'],
+  shoryuken_options queue: ENV['WANTED_DOMAIN_CHECK_AVAILABILITY'],
                     auto_delete: true,
                     body_parser: :json,
                     retry_intervals: 3600
@@ -32,7 +32,7 @@ class WantedDomainCheckWorker
   end
 
   def check_availability(page_content, domain)
-    domain_available = page_content.css('table')[0].css('td#bodyfill')[0].css('h3').text
+    domain_available = (page_content.css('table')[0].css('td#bodyfill')[0].css('h3').text == domain.name_with_tld)
 
     if domain_available
       save_as_available(domain)
