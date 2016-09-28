@@ -1,0 +1,7 @@
+<div class="container">
+  <%= form_for @wanted_domain, url: {action: 'create'} do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>
