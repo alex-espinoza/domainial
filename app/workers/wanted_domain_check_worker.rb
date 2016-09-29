@@ -49,11 +49,11 @@ class WantedDomainCheckWorker
 
   def save_as_not_available(page_content, domain)
     status = page_content.css('table')[4].css('tr')[3].css('td')[1].text
-    first_registered_date = page_content.css('table')[4].css('tr')[4].css('td')[1].text.to_datetime
-    last_updated_date = page_content.css('table')[4].css('tr')[5].css('td')[1].text.to_datetime
-    expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ')[0].to_datetime
-    grace_period_ends_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ').last(2).join(' ').to_datetime
-    backorder = page_content.css('table')[4].css('tr')[7].css('td')[1].text.split(' ')[0]
+    first_registered_date = page_content.css('table')[4].css('tr')[4].css('td')[1]&.text&.to_datetime
+    last_updated_date = page_content.css('table')[4].css('tr')[5].css('td')[1]&.text&.to_datetime
+    expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1]&.text&.split(' ')&[0]&.to_datetime
+    grace_period_ends_date = page_content.css('table')[4].css('tr')[6].css('td')[1]&.text&.split(' ')&.last(2)&.join(' ')&.to_datetime
+    backorder = page_content.css('table')[4].css('tr')[7].css('td')[1]&.text&.split(' ')&[0]
     owner_name = page_content.css('table')[4].css('tr')[10].css('td')[1]&.text
     organization_name = page_content.css('table')[4].css('tr')[11].css('td')[1]&.text
 
