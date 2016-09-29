@@ -2,6 +2,6 @@
   <%= form_for @wanted_domain, url: {action: 'create'} do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
-    <%= f.submit 'Submit' %>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
   <% end %>
 </div>
