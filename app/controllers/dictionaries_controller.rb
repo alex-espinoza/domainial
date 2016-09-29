@@ -9,6 +9,6 @@ class DictionariesController < ApplicationController
 
     @words = Dictionary.where('word LIKE :prefix AND length(word) <= :max_word_length', prefix: starting_letters, max_word_length: max_word_length).limit(limit).order('RANDOM()')
 
-    flash.now[:notice] = "Results for #{params[:starting_letters]}"
+    flash.now[:notice] = "#{@words.size} results for '#{params[:starting_letters]}' limited to #{max_word_length} characters"
   end
 end
