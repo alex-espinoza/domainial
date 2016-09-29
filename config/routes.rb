@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'wanted_domains/check_all', to: 'wanted_domains#check_all'
   resources :wanted_domains
 
   root to: 'wanted_domains#index'

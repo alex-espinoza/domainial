@@ -3,6 +3,14 @@ class WantedDomain < ApplicationRecord
   # status_code can have 2 states: 0 = not available, 1 = available
   validates :name, uniqueness: true
 
+  def self.queue_all_unchecked
+    domains_to_be_checked = WantedDomain.where(checked?: [0, 2])
+
+    domains_to_be_checked.each do |domain|
+      WantedDomainCheckWorker.perform_async(domain_id: domain.id)
+    end
+  end
+
   def name_with_tld
     "#{self.name}#{self.tld}"
   end

@@ -21,6 +21,13 @@ class WantedDomainsController < ApplicationController
     end
   end
 
+  def check_all
+    WantedDomain.queue_all_unchecked
+
+    flash[:notice] = 'All unchecked domains have been requeued.'
+    redirect_to root_path
+  end
+
   private
 
   def wanted_domain_params
