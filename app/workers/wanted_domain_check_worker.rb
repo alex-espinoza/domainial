@@ -54,8 +54,8 @@ class WantedDomainCheckWorker
     expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ')[0].to_datetime
     grace_period_ends_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ').last(2).join(' ').to_datetime
     backorder = page_content.css('table')[4].css('tr')[7].css('td')[1].text.split(' ')[0]
-    owner_name = page_content.css('table')[4].css('tr')[10].css('td')[1].text
-    organization_name = page_content.css('table')[4].css('tr')[11].css('td')[1].text
+    owner_name = page_content.css('table')[4].css('tr')[10].css('td')[1]&.text
+    organization_name = page_content.css('table')[4].css('tr')[11].css('td')[1]&.text
 
     domain.update(checked?: 1,
                    status: status,
