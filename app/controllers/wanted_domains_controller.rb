@@ -16,7 +16,7 @@ class WantedDomainsController < ApplicationController
       flash[:success] = "#{@wanted_domain.name_with_tld} added."
       redirect_to root_path
     else
-      flash[:error] = @wanted_domain.errors.full_messages.to_sentence
+      flash.now[:error] = @wanted_domain.errors.full_messages.to_sentence
       render action: 'new'
     end
   end
