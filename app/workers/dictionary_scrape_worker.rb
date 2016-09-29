@@ -1,0 +1,54 @@
+class DictionaryScrapeWorker
+  include HTTParty
+  include Shoryuken::Worker
+  base_uri 'http://www.dictionary.com/list'
+  shoryuken_options queue: ENV['DICTIONARY_SCRAPE'],
+                    auto_delete: true,
+                    body_parser: :json,
+                    retry_intervals: 3600
+
+  def perform(sqs_message, data)
+    letter = data['letter']
+    last_page_number = data['last_page_number']
+    letter_page_range = (1..last_page_number)
+
+    letter_page_range.each do |page_number|
+      response = make_http_request(letter, page_number)
+      page_content = get_page_content(response)
+      parse_all_words(letter, page_content)
+    end
+  end
+
+  def make_http_request(letter, page_number)
+    begin
+      response = self.class.get("/#{letter}/#{page_number}")
+    rescue HTTParty::Error => e
+      error_log_file = ActiveSupport::Logger.new('log/dictionary_scrape_worker.rake.err')
+      time = Time.now
+      error_text = "[ERROR] - [#{time}] - #{e}"
+      error_log_file.info(error_text)
+      error_log_file.close
+    end
+  end
+
+  def get_page_content(response)
+    Nokogiri::HTML(response)
+  end
+
+  def parse_all_words(letter, page_content)
+    word_elements = page_content.css('.words-list')[0].css('ul')[0].css('li')
+
+    word_elements.each do |element|
+      word = element.css('span')[0].text
+      definition_url = element.css('span')[1].css('a')[0]['href']
+
+      save_word(letter, word, definition_url)
+    end
+  end
+
+  def save_word(letter, word, definition_url)
+    Dictionary.create(word: word,
+                      first_character: letter,
+                      definition_url: definition_url)
+  end
+end
