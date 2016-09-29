@@ -12,9 +12,12 @@ class WantedDomainsController < ApplicationController
     @wanted_domain.tld = '.io'
 
     if @wanted_domain.valid? && @wanted_domain.save
+      WantedDomainCheckWorker.perform_async(domain_id: @wanted_domain.id)
+      flash[:success] = "#{@wanted_domain.name_with_tld} added."
       redirect_to root_path
     else
-      render 'create.html'
+      flash[:error] = @wanted_domain.errors.full_messages.to_sentence
+      render action: 'new'
     end
   end
 
