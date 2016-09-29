@@ -9,6 +9,7 @@ class WantedDomainsController < ApplicationController
 
   def create
     @wanted_domain = WantedDomain.new(wanted_domain_params)
+    @wanted_domain.name = @wanted_domain.name.downcase
     @wanted_domain.tld = '.io'
 
     if @wanted_domain.valid? && @wanted_domain.save
