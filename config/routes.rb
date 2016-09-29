@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'dictionaries/search', to: 'dictionaries#search'
   resources :dictionaries
+
   get 'wanted_domains/check_all', to: 'wanted_domains#check_all'
   resources :wanted_domains
 

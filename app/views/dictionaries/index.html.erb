@@ -1,0 +1,11 @@
+<div class="container">
+  <%= form_tag url_for(controller: 'dictionaries', action: 'search'), method: 'get' do %>
+    <%= label_tag :starting_letters, "Starting letters" %>
+    <%= text_field_tag :starting_letters %>
+    <%= label_tag :number_of_results, "Number of results" %>
+    <%= text_field_tag :number_of_results %>
+    <%= label_tag :max_word_length, "Max word length" %>
+    <%= text_field_tag :max_word_length %>
+    <%= submit_tag 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+</div>
