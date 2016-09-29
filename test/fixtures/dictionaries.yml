@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word: MyString
+  first_character: MyString
+  definition_url: MyString
+  interested: 1
+
+two:
+  word: MyString
+  first_character: MyString
+  definition_url: MyString
+  interested: 1
