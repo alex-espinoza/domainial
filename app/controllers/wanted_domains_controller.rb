@@ -15,7 +15,7 @@ class WantedDomainsController < ApplicationController
     if @wanted_domain.valid? && @wanted_domain.save
       WantedDomainCheckWorker.perform_async(domain_id: @wanted_domain.id)
       flash[:success] = "#{@wanted_domain.name_with_tld} added."
-      redirect_to root_path
+      redirect_to wanted_domains_all_path
     else
       flash.now[:error] = @wanted_domain.errors.full_messages.to_sentence
       render action: 'new'
@@ -30,7 +30,7 @@ class WantedDomainsController < ApplicationController
     WantedDomain.queue_all_unchecked
 
     flash[:notice] = 'All unchecked domains have been requeued.'
-    redirect_to root_path
+    redirect_to wanted_domains_all_path
   end
 
   private
