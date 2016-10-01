@@ -40,7 +40,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.2)
-    autoprefixer-rails (6.5.0)
+    autoprefixer-rails (6.5.0.1)
       execjs
     aws-sdk-core (2.6.4)
       jmespath (~> 1.0)
