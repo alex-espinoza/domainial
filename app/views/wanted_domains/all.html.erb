@@ -4,7 +4,7 @@
     <%= link_to 'Check All', wanted_domains_check_all_path, class: 'nav-link btn btn-outline-primary' %>
   </nav>
 
-  <table class="table table-hover">
+  <table class="table table-hover table-striped">
     <thead>
       <tr>
         <th>Name</th>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       <% @wanted_domains.each do |domain| %>
-        <tr class="<%= domain.is_available_class %>">
+        <tr class="<%= domain.is_available_css_class %>">
           <th><%= domain.name %></th>
           <th><%= domain.tld %></th>
           <th><%= domain.pretty_date(domain.first_registered_date) %></th>

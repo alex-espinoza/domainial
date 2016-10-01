@@ -95,7 +95,7 @@ class WantedDomainCheckWorker
       expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ')[0].to_datetime
       grace_period_ends_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ').last(2).join(' ').to_datetime
       backorder = page_content.css('table')[4].css('tr')[7].css('td')[1].text.split(' ')[0]
-      backorder_code = if backorder == "Available" then 0 else 1 end
+      backorder_code = (backorder == "Available" ? 0 : 1)
       owner_name = page_content.css('table')[4].css('tr')[10].css('td')[1]&.text
       organization_name = page_content.css('table')[4].css('tr')[11].css('td')[1]&.text
     end

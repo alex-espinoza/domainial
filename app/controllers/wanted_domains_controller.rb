@@ -1,6 +1,6 @@
 class WantedDomainsController < ApplicationController
   def index
-    @wanted_domains = WantedDomain.all
+    @wanted_domains_being_released = WantedDomain.where(grace_period_ends_date: Time.now..1.month.from_now, status_code: 0).order(:grace_period_ends_date)
   end
 
   def new
@@ -23,7 +23,7 @@ class WantedDomainsController < ApplicationController
   end
 
   def all
-    @wanted_domains = WantedDomain.all
+    @wanted_domains = WantedDomain.all.order(:id)
   end
 
   def check_all

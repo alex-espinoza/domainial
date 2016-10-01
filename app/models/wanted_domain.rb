@@ -16,8 +16,12 @@ class WantedDomain < ApplicationRecord
     "#{self.name}#{self.tld}"
   end
 
-  def is_available_class
+  def is_available_css_class
     self.status_code == 1 ? 'table-success' : ''
+  end
+
+  def is_backordered_css_class
+    self.backorder_status == 1 ? 'table-warning' : ''
   end
 
   def pretty_date(datetime)
