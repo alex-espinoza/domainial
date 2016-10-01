@@ -73,7 +73,8 @@ class WantedDomainCheckWorker
   def save_as_available(domain)
     domain.update(checked?: 1,
                   status: 'Available',
-                  status_code: 1)
+                  status_code: 1,
+                  backorder_code: 0)
   end
 
   def save_as_not_available(page_content, domain)
@@ -85,6 +86,7 @@ class WantedDomainCheckWorker
       expiry_date = nil
       grace_period_ends_date = nil
       backorder = nil
+      backorder_code = 0
       owner_name = nil
       organization_name = nil
     else
@@ -93,6 +95,7 @@ class WantedDomainCheckWorker
       expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ')[0].to_datetime
       grace_period_ends_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ').last(2).join(' ').to_datetime
       backorder = page_content.css('table')[4].css('tr')[7].css('td')[1].text.split(' ')[0]
+      backorder_code = if backorder == "Available" then 0 else 1 end
       owner_name = page_content.css('table')[4].css('tr')[10].css('td')[1]&.text
       organization_name = page_content.css('table')[4].css('tr')[11].css('td')[1]&.text
     end
@@ -105,6 +108,7 @@ class WantedDomainCheckWorker
                   expiry_date: expiry_date,
                   grace_period_ends_date: grace_period_ends_date,
                   backorder: backorder,
+                  backorder_code: backorder_code,
                   owner_name: owner_name,
                   organization_name: organization_name)
   end
