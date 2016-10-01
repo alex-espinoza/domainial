@@ -1,0 +1,39 @@
+<div class="container">
+  <nav class="nav nav-inline">
+    <%= link_to 'New', new_wanted_domain_path, class: 'nav-link btn btn-outline-primary' %>
+    <%= link_to 'Check All', wanted_domains_check_all_path, class: 'nav-link btn btn-outline-primary' %>
+  </nav>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>TLD</th>
+        <th>First Registered</th>
+        <th>Last Updated</th>
+        <th>Expiry</th>
+        <th>Grace Period Ends</th>
+        <th>Backorder</th>
+        <th>Status</th>
+        <th>Owner Name</th>
+        <th>Organization Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @wanted_domains.each do |domain| %>
+        <tr class="<%= domain.is_available_class %>">
+          <th><%= domain.name %></th>
+          <th><%= domain.tld %></th>
+          <th><%= domain.pretty_date(domain.first_registered_date) %></th>
+          <th><%= domain.pretty_date(domain.last_updated_date) %></th>
+          <th><%= domain.pretty_date(domain.expiry_date) %></th>
+          <th><%= domain.pretty_date(domain.grace_period_ends_date) %></th>
+          <th><%= domain.backorder %></th>
+          <th><%= domain.status %></th>
+          <th><%= domain.owner_name %></th>
+          <th><%= domain.organization_name %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

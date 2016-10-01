@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :dictionaries
 
   get 'wanted_domains/check_all', to: 'wanted_domains#check_all'
+  get 'wanted_domains/all', to: 'wanted_domains#all'
   resources :wanted_domains
 
   root to: 'wanted_domains#index'

@@ -22,6 +22,10 @@ class WantedDomainsController < ApplicationController
     end
   end
 
+  def all
+    @wanted_domains = WantedDomain.all
+  end
+
   def check_all
     WantedDomain.queue_all_unchecked
 
