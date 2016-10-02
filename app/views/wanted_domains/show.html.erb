@@ -4,4 +4,30 @@
   </nav>
 
   <h1><%= @wanted_domain.name_with_tld %></h1>
+
+  <dl>
+    <dt>First Registered Date</dt>
+    <dd><%= @wanted_domain.pretty_date(@wanted_domain.first_registered_date) %></dd>
+    <dt>Last Updated Date</dt>
+    <dd><%= @wanted_domain.pretty_date(@wanted_domain.last_updated_date) %></dd>
+    <dt>Expiry Date</dt>
+    <dd><%= @wanted_domain.pretty_date(@wanted_domain.expiry_date) %></dd>
+    <dt>First Registered Date</dt>
+    <dd><%= @wanted_domain.pretty_date(@wanted_domain.grace_period_ends_date) %></dd>
+    <dt>Backorder Status</dt>
+    <dd><%= @wanted_domain.backorder %></dd>
+    <dt>Domain Status</dt>
+    <dd><%= @wanted_domain.status %></dd>
+    <dt>Owner Name</dt>
+    <dd><%= @wanted_domain.owner_name %></dd>
+    <dt>Organization Status</dt>
+    <dd><%= @wanted_domain.organization_name %></dd>
+  </dl>
+
+  <a href="http://nic.io/go/whois/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">WHOIS</a>
+  <a href="http://dnpric.es/?q=<%= @wanted_domain.name %>" target="_blank" class="btn btn-primary">DNPric.es</a>
+  <a href="http://similarweb.com/website/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">SimilarWeb</a>
+  <a href="http://estibot.com" target="_blank" class="btn btn-primary">Estibot</a>
+  <a href="http://app.park.io/domains/view/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">Park.io</a>
+  <a href="https://app.park.io/orders/pay/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">Park.io Pay Now</a>
 </div>
