@@ -4,7 +4,7 @@
     <%= link_to 'Within Month', wanted_domains_expiring_within_month_path, class: 'nav-link btn btn-outline-primary' %>
   </nav>
 
-  <h1>Domains being released in the next day</h1>
+  <h1>Domains being released within the next month</h1>
 
   <table class="table table-hover table-striped">
     <thead>
@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @domains_being_released_in_48_hours.each do |domain| %>
+      <% @domains_being_released_in_month.each do |domain| %>
         <tr class="<%= domain.is_backordered_css_class %>">
           <th><%= link_to domain.name, wanted_domain_path(domain.id) %></th>
           <th><%= domain.tld %></th>

@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container wanted-domains-container">
   <nav class="nav nav-inline">
     <%= link_to 'See All', wanted_domains_all_path, class: 'nav-link btn btn-outline-primary' %>
+    <%= link_to 'Within Month', wanted_domains_expiring_within_month_path, class: 'nav-link btn btn-outline-primary' %>
   </nav>
 
   <h1><%= @wanted_domain.name_with_tld %></h1>

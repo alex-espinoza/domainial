@@ -1,6 +1,8 @@
 class WantedDomainsController < ApplicationController
   def index
-    @wanted_domains_being_released = WantedDomain.where(grace_period_ends_date: Time.now..1.month.from_now, status_code: 0).order(:grace_period_ends_date)
+    beginning_of_today = DateTime.now.utc.beginning_of_day
+    beginning_of_tomorrow = beginning_of_today + 2.days
+    @domains_being_released_in_48_hours = WantedDomain.where(grace_period_ends_date: beginning_of_today..beginning_of_tomorrow, status_code: 0).order(:grace_period_ends_date)
   end
 
   def new
@@ -24,6 +26,12 @@ class WantedDomainsController < ApplicationController
       flash.now[:error] = @wanted_domain.errors.full_messages.to_sentence
       render action: 'new'
     end
+  end
+
+  def expiring_within_month
+    beginning_of_today = DateTime.now.utc.beginning_of_day
+    one_month = beginning_of_today + 32.days
+    @domains_being_released_in_month = WantedDomain.where(grace_period_ends_date: beginning_of_today..one_month, status_code: 0).order(:grace_period_ends_date)
   end
 
   def all

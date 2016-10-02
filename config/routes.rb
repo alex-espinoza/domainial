@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'dictionaries/search', to: 'dictionaries#search'
   resources :dictionaries, only: [:index]
 
+  get 'wanted_domains/expiring_within_month', to: 'wanted_domains#expiring_within_month'
   get 'wanted_domains/check_all', to: 'wanted_domains#check_all'
   get 'wanted_domains/all', to: 'wanted_domains#all'
   resources :wanted_domains, only: [:index, :show, :new, :create]
