@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'wanted_domains/check_all', to: 'wanted_domains#check_all'
   get 'wanted_domains/all', to: 'wanted_domains#all'
-  resources :wanted_domains, only: [:index, :new, :create]
+  resources :wanted_domains, only: [:index, :show, :new, :create]
 
   namespace :api, defaults: {format: :json} do
     post 'wanted_domains/create', to: 'wanted_domains#create'

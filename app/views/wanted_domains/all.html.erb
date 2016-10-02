@@ -22,7 +22,7 @@
     <tbody>
       <% @wanted_domains.each do |domain| %>
         <tr class="<%= domain.is_available_css_class %>">
-          <th><%= domain.name %></th>
+          <th><%= link_to domain.name, wanted_domain_path(domain.id) %></th>
           <th><%= domain.tld %></th>
           <th><%= domain.pretty_date(domain.first_registered_date) %></th>
           <th><%= domain.pretty_date(domain.last_updated_date) %></th>

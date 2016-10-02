@@ -5,7 +5,7 @@
 
   <h1>Domains being released within the next month</h1>
 
-  <table class="table table-hover">
+  <table class="table table-hover table-striped">
     <thead>
       <tr>
         <th>Name</th>
@@ -17,7 +17,7 @@
     <tbody>
       <% @wanted_domains_being_released.each do |domain| %>
         <tr class="<%= domain.is_backordered_css_class %>">
-          <th><%= domain.name %></th>
+          <th><%= link_to domain.name, wanted_domain_path(domain.id) %></th>
           <th><%= domain.tld %></th>
           <th><%= domain.pretty_date(domain.grace_period_ends_date) %></th>
           <th><%= domain.backorder %></th>

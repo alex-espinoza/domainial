@@ -7,6 +7,10 @@ class WantedDomainsController < ApplicationController
     @wanted_domain = WantedDomain.new
   end
 
+  def show
+    @wanted_domain = WantedDomain.find(params[:id])
+  end
+
   def create
     @wanted_domain = WantedDomain.new(wanted_domain_params)
     @wanted_domain.name = @wanted_domain.name.strip.downcase
