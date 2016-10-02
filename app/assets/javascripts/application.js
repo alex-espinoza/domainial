@@ -16,3 +16,14 @@
 //= require tether
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+  function updateCurrentTime() {
+    var currentTime = new Date().toUTCString();
+    $('#current-time').text(currentTime);
+  }
+
+  updateCurrentTime();
+
+  var currentTimeInterval = window.setInterval(updateCurrentTime, 1000);
+});
