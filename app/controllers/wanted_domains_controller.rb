@@ -23,7 +23,7 @@ class WantedDomainsController < ApplicationController
   end
 
   def all
-    @wanted_domains = WantedDomain.all.order(:id)
+    @wanted_domains = WantedDomain.all.order(id: :desc)
   end
 
   def check_all
