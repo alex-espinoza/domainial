@@ -1,15 +1,16 @@
 class DictionaryScrapeWorker
   include HTTParty
-  include Shoryuken::Worker
+  include Sidekiq::Worker
   base_uri 'http://www.dictionary.com/list'
-  shoryuken_options queue: ENV['DICTIONARY_SCRAPE'],
-                    auto_delete: true,
-                    body_parser: :json,
-                    retry_intervals: 3600
+  sidekiq_options queue: ENV['WANTED_DOMAIN_CHECK_AVAILABILITY'],
+                  retry: 5,
+                  backtrace: 3
 
-  def perform(sqs_message, data)
-    letter = data['letter']
-    last_page_number = data['last_page_number']
+  sidekiq_retry_in do |count|
+    90
+  end
+
+  def perform(letter, last_page_number)
     letter_page_range = (1..last_page_number)
 
     letter_page_range.each do |page_number|

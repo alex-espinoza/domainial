@@ -1,0 +1,7 @@
+concurrency: 5
+pidfile: tmp/pids/sidekiq.pid
+queues:
+  - wanted_domain_check_availability
+  - wanted_domain_check_availability_dev
+  - dictionary_scrape
+  - dictionary_scrape_dev

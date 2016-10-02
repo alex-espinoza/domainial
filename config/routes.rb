@@ -1,4 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web, at: '/sidekiq'
+
   get 'dictionaries/search', to: 'dictionaries#search'
   resources :dictionaries
 

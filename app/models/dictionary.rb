@@ -33,7 +33,7 @@ class Dictionary < ApplicationRecord
     ]
 
     letter_and_last_page_number.each do |pair|
-      DictionaryScrapeWorker.perform_async(letter: pair[0], last_page_number: pair[1])
+      DictionaryScrapeWorker.perform_async(pair[0], pair[1])
     end
   end
 end

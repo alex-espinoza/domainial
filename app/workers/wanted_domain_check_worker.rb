@@ -1,14 +1,17 @@
 class WantedDomainCheckWorker
   include HTTParty
-  include Shoryuken::Worker
+  include Sidekiq::Worker
   base_uri 'http://www.nic.io/go/whois'
-  shoryuken_options queue: ENV['WANTED_DOMAIN_CHECK_AVAILABILITY'],
-                    auto_delete: true,
-                    body_parser: :json,
-                    retry_intervals: 90
+  sidekiq_options queue: ENV['WANTED_DOMAIN_CHECK_AVAILABILITY'],
+                  retry: 5,
+                  backtrace: 3
 
-  def perform(sqs_message, data)
-    domain = WantedDomain.find(data['domain_id'])
+  sidekiq_retry_in do |count|
+    90
+  end
+
+  def perform(domain_id)
+    domain = WantedDomain.find(domain_id)
 
     begin
       response = make_http_request(domain)
@@ -27,25 +30,13 @@ class WantedDomainCheckWorker
   def proxy_list
     [
       ["166.70.157.58", "80"],
-      ["173.161.0.227", "80"],
-      ["45.32.214.48",  "808"],
-      ["52.37.174.68",  "80"],
-      ["97.107.129.183",  "80"],
-      ["104.236.54.196",  "8080"],
-      ["104.247.206.88",  "3128"],
-      ["184.49.233.234",  "8080"],
-      ["68.71.156.223", "8800"],
-      ["68.71.156.115", "8800"],
-      ["68.71.148.86",  "8800"],
-      ["172.82.132.117",  "8800"],
-      ["198.46.224.49", "8800"],
-      ["23.89.42.159",  "8800"],
-      ["172.82.178.119",  "8800"],
-      ["23.89.41.178",  "8800"],
-      ["97.77.104.22",  "80"],
-      ["159.203.111.101", "3128"],
-      ["138.68.152.51", "8080"],
-      ["209.64.81.18",  "8080"],
+      # ["74.202.77.211", "80"],
+      # ["45.32.214.48",  "808"],
+      # ["104.236.51.165",  "8080"],
+      # ["97.107.129.183",  "80"],
+      # ["97.77.104.22",  "80"],
+      # ["52.37.174.68",  "80"],
+      # ["104.236.54.196",  "8080"],
     ]
   end
 

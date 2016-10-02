@@ -39,7 +39,7 @@ end
 
 gem 'httparty'
 gem 'nokogiri'
-gem 'shoryuken'
+gem 'sidekiq'
 gem 'figaro'
 
 group :development, :test do
