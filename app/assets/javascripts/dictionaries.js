@@ -21,11 +21,9 @@ $(function() {
     })
     .done(function(response) {
       $this.toggleClass('btn-secondary btn-success');
-      $this.text('Now Tracking');
     })
     .fail(function(response) {
       $this.toggleClass('btn-secondary btn-warning');
-      $this.text('Already Tracked');
     })
   });
 });
