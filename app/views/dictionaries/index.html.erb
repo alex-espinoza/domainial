@@ -1,11 +1,25 @@
 <div class="container">
-  <%= form_tag url_for(controller: 'dictionaries', action: 'search'), method: 'get' do %>
-    <%= label_tag :starting_letters, "Starting letters" %>
-    <%= text_field_tag :starting_letters %>
-    <%= label_tag :number_of_results, "Number of results" %>
-    <%= text_field_tag :number_of_results %>
-    <%= label_tag :max_word_length, "Max word length" %>
-    <%= text_field_tag :max_word_length %>
+  <%= form_tag url_for(controller: 'dictionaries', action: 'search'), method: :post do %>
+    <%= fields_for :search_field_strings do |f| %>
+      <div class="form-group">
+        <%= label_tag "search_field_strings[starting_letters]", "Starting letters" %>
+        <%= text_field_tag "search_field_strings[starting_letters]", '', class: 'form-control' %>
+      </div>
+    <% end %>
+    <%= fields_for :search_field_numbers do |f| %>
+      <div class="form-group">
+        <%= label_tag "search_field_numbers[number_of_results]", "Number of results" %>
+        <%= text_field_tag "search_field_numbers[number_of_results]", '', class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= label_tag "search_field_numbers[max_word_length]", "Max word length" %>
+        <%= text_field_tag "search_field_numbers[max_word_length]", '', class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= label_tag "search_field_numbers[exact_word_length]", "Exact word length" %>
+        <%= text_field_tag "search_field_numbers[exact_word_length]", '', class: 'form-control' %>
+      </div>
+    <% end %>
     <%= submit_tag 'Submit', class: 'btn btn-primary' %>
   <% end %>
 </div>

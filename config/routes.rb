@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
-  get 'dictionaries/search', to: 'dictionaries#search'
+  post 'dictionaries/search', to: 'dictionaries#search'
   resources :dictionaries
 
   get 'wanted_domains/check_all', to: 'wanted_domains#check_all'
