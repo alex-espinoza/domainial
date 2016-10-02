@@ -1,9 +1,10 @@
 <div class="container">
-  <table class="table table-hover">
+  <table class="table table-hover table-striped">
     <thead>
       <tr>
         <th>Word</th>
         <th>First Character</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -11,6 +12,7 @@
         <tr>
           <th><a href="<%= word.definition_url %>" target="_blank"><%= word.word %></a></th>
           <th><%= word.first_character %></th>
+          <th><button class="btn btn-secondary btn-sm track-domain" value="<%= word.word %>">Track</button></th>
         </tr>
       <% end %>
     </tbody>

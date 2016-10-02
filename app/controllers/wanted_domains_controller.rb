@@ -9,11 +9,11 @@ class WantedDomainsController < ApplicationController
 
   def create
     @wanted_domain = WantedDomain.new(wanted_domain_params)
-    @wanted_domain.name = @wanted_domain.name.downcase
+    @wanted_domain.name = @wanted_domain.name.strip.downcase
     @wanted_domain.tld = '.io'
 
     if @wanted_domain.valid? && @wanted_domain.save
-      WantedDomainCheckWorker.perform_async(domain_id: @wanted_domain.id)
+      WantedDomainCheckWorker.perform_async(@wanted_domain.id)
       flash[:success] = "#{@wanted_domain.name_with_tld} added."
       redirect_to wanted_domains_all_path
     else
