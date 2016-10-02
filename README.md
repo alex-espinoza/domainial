@@ -4,6 +4,9 @@ Helper application for owned domain name organization.
 
 FEATURES TO ADD:
 
-* Info for all domains I own and filters (expiration date, by TLD, etc)
-
-* Interested name lookups, use APIs to look up jobs in queue for whois information and save that data
+- create json api endpoint for adding wanted domains from above search results with a link click
+- create script that reads daily from expireddomains.net and adds to wanted
+- create script that reads from http://www.nic.io/released/ and adds wanted
+- create another table that lists (might be) currently available, pull in from http://www.nic.io/released
+- install foreman
+- install whenever to cronjob certain workers
