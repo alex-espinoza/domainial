@@ -59,16 +59,39 @@ class DomainPurchaserWorker
 
   ### start here
 
-  def check_if_domain_available
-    puts @server.call('domain.available', @api_key, [@domain]).inspect
-  end
+  # def check_if_domain_available
+  #   puts @server.call('domain.available', @api_key, [@domain]).inspect
+  #   puts Time.now.utc
+  # end
 
-  def choose_contact
-    puts @server.call('contact.can_associate_domain', @api_key, @gandi_handle, @association_spec)
-  end
+  # def spam_check_domain
+  #   (1..50).each do |i|
+  #     begin
+  #       puts "Attempt #{i}"
+  #       check_if_domain_available
+  #     rescue
+  #       next
+  #     end
+  #   end
+  # end
+
+  # def choose_contact
+  #   puts @server.call('contact.can_associate_domain', @api_key, @gandi_handle, @association_spec)
+  # end
 
   def purchase_domain
-    puts @server.call('domain.create', @api_key, @domain, @domain_registration_info).inspect
+    @server.call('domain.create', @api_key, @domain, @domain_registration_info)
   end
 
+  def spam_purchase_domain
+    (1..100).each do |i|
+      begin
+        puts "Attempt #{i}"
+        response = purchase_domain
+        break if response['step'] == 'BILL'
+      rescue
+        next
+      end
+    end
+  end
 end
