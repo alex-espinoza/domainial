@@ -21,15 +21,7 @@ class DictionaryScrapeWorker
   end
 
   def make_http_request(letter, page_number)
-    begin
-      response = self.class.get("/#{letter}/#{page_number}")
-    rescue HTTParty::Error => e
-      error_log_file = ActiveSupport::Logger.new('log/dictionary_scrape_worker.rake.err')
-      time = Time.now
-      error_text = "[ERROR] - [#{time}] - #{e}"
-      error_log_file.info(error_text)
-      error_log_file.close
-    end
+    self.class.get("/#{letter}/#{page_number}")
   end
 
   def get_page_content(response)

@@ -53,4 +53,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.autoload_paths += %W(#{config.root}/app/workers)
+
+  config.action_dispatch.show_exceptions = false
 end
