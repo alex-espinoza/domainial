@@ -9,16 +9,18 @@ Helper application for owned domain name organization.
 `foreman start`
 
 
-FEATURES TO ADD:
+# FEATURES TO ADD:
 
 - create script that reads from park IO API (http://blog.park.io/articles/park-io-api/) and adds domains that are currenty being auctioned - PARK IO SPY
 - create script that reads and saves park IOs last 50 sales (http://park.io/faq/ - end of page) - PARK IO SPY
 - install whenever to cronjob certain workers
 - change code to not save "." for tld
 - add button to re-check domain
+- add schema constraints to CompetitorDomain
+- create views to show competitor domain data
 
 
-PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
+# PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
 - host main app on heroku
 - main app connects to RDS to use for PostgresDB
@@ -27,3 +29,7 @@ PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
   - https://github.com/lorennorman/ruby-on-lambda
   - http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html
   - http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html (might just use javascript for the request)
+
+# IMPORTANT TIMES:
+
+8:30 PM EST 0:30 UTC daily - .io domains are expired
