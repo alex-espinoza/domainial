@@ -22,14 +22,14 @@ class CompetitorDomainAuctionWorker
                                            auction_end_date: DateTime.strptime(auction['close_date'], '%Y-%d-%m'),
                                            auction_start_date: DateTime.strptime(auction['created'], '%Y-%d-%m'))
     else
-      CompetitorDomain.create!(name: domain_array[0],
-                               tld: ".#{domain_array[1]}",
-                               number_of_bids: auction['num_bids'].to_i,
-                               price: auction['price'].to_i,
-                               auction_end_date: DateTime.strptime(auction['close_date'], '%Y-%d-%m'),
-                               auction_start_date: DateTime.strptime(auction['created'], '%Y-%d-%m'),
-                               active: 1,
-                               source: source)
+      CompetitorDomain.create(name: domain_array[0],
+                              tld: ".#{domain_array[1]}",
+                              number_of_bids: auction['num_bids'].to_i,
+                              price: auction['price'].to_i,
+                              auction_end_date: DateTime.strptime(auction['close_date'], '%Y-%d-%m'),
+                              auction_start_date: DateTime.strptime(auction['created'], '%Y-%d-%m'),
+                              active: 1,
+                              source: source)
     end
   end
 end
