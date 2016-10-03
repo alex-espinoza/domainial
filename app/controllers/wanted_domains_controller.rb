@@ -5,12 +5,12 @@ class WantedDomainsController < ApplicationController
     @domains_being_released_in_48_hours = WantedDomain.where(grace_period_ends_date: beginning_of_today..beginning_of_tomorrow, status_code: 0).order(:grace_period_ends_date)
   end
 
-  def new
-    @wanted_domain = WantedDomain.new
-  end
-
   def show
     @wanted_domain = WantedDomain.find(params[:id])
+  end
+
+  def new
+    @wanted_domain = WantedDomain.new
   end
 
   def create
