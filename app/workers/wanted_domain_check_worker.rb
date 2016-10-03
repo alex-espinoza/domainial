@@ -53,10 +53,10 @@ class WantedDomainCheckWorker
   end
 
   def save_as_available(domain)
-    domain.update(checked?: 1,
-                  status: 'Available',
-                  status_code: 1,
-                  backorder_status: 0)
+    domain.update!(checked?: 1,
+                   status: 'Available',
+                   status_code: 1,
+                   backorder_status: 0)
   end
 
   def save_as_not_available(page_content, domain)
@@ -83,16 +83,16 @@ class WantedDomainCheckWorker
       status != 'Card Failed' && organization_name = page_content.css('table')[4].css('tr')[11].css('td')[1]&.text
     end
 
-    domain.update(checked?: 1,
-                  status: status,
-                  status_code: 0,
-                  first_registered_date: first_registered_date,
-                  last_updated_date: last_updated_date,
-                  expiry_date: expiry_date,
-                  grace_period_ends_date: grace_period_ends_date,
-                  backorder: backorder,
-                  backorder_status: backorder_status,
-                  owner_name: owner_name,
-                  organization_name: organization_name)
+    domain.update!(checked?: 1,
+                   status: status,
+                   status_code: 0,
+                   first_registered_date: first_registered_date,
+                   last_updated_date: last_updated_date,
+                   expiry_date: expiry_date,
+                   grace_period_ends_date: grace_period_ends_date,
+                   backorder: backorder,
+                   backorder_status: backorder_status,
+                   owner_name: owner_name,
+                   organization_name: organization_name)
   end
 end

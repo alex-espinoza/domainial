@@ -40,8 +40,8 @@ class DictionaryScrapeWorker
   end
 
   def save_word(letter, word, definition_url)
-    Dictionary.create(word: word,
-                      first_character: letter,
-                      definition_url: definition_url)
+    Dictionary.create!(word: word,
+                       first_character: letter,
+                       definition_url: definition_url)
   end
 end
