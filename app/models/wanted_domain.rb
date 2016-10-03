@@ -1,4 +1,5 @@
 class WantedDomain < ApplicationRecord
+  has_many :drop_checks
   # checked? can have 3 states: 0 = not checked, 1 = checked, 2 = scheduled to be checked again
   # status_code can have 2 states: 0 = not available, 1 = available
   # backorder_status can have 2 states: 0 = not backordered, 1 = already backordered

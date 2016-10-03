@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001213734) do
+ActiveRecord::Schema.define(version: 20161003002207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20161001213734) do
     t.integer  "interested?",     default: 0, null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "drop_checks", force: :cascade do |t|
+    t.integer  "status_code"
+    t.integer  "wanted_domain_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.datetime "first_registered_date"
+    t.datetime "last_updated_date"
+    t.datetime "expiry_date"
+    t.datetime "grace_period_ends_date"
+    t.index ["wanted_domain_id"], name: "index_drop_checks_on_wanted_domain_id", using: :btree
   end
 
   create_table "wanted_domains", force: :cascade do |t|
