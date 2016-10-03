@@ -2,6 +2,7 @@
 :concurrency: 20
 :pidfile: tmp/pids/sidekiq.pid
 :queues:
+  - park_io_queue
   - drop_check_availability_dev
   - wanted_domain_check_availability
   - wanted_domain_check_availability_dev
