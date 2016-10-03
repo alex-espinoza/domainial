@@ -16,7 +16,7 @@ class ParkIOAuctionAPIWorker
 
   def save_all_auctions(response)
     response['auctions'].each do |auction|
-      CompetitorDomainUpdaterWorker.perform_async(auction, 'park.io')
+      CompetitorDomainAuctionWorker.perform_async(auction, 'park.io')
     end
   end
 end
