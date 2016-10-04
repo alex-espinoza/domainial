@@ -3,7 +3,7 @@ class DropCheckWorker
   include Sidekiq::Worker
   base_uri 'http://www.nic.io/go/whois'
   sidekiq_options queue: ENV['DROP_CHECK_AVAILABILITY'],
-                  retry: 30,
+                  retry: 5,
                   backtrace: 3
 
   sidekiq_retry_in do |count|
@@ -13,22 +13,18 @@ class DropCheckWorker
   def perform(domain_id)
     domain = WantedDomain.find(domain_id)
 
-    response = make_http_request(domain)
-    page_content = get_page_content(response)
-    check_availability(page_content, domain)
+    (1..40).each do
+      response = make_http_request(domain)
+      page_content = get_page_content(response)
+      check_availability(page_content, domain)
+    end
   end
 
   def proxy_list
     [
-      ["166.70.157.58", "80"],
-      ["40.84.57.100",  "8080"],
       ["97.77.104.22",  "80"],
       ["173.161.0.227", "80"],
-      ["40.74.57.52", "80"],
-      ["136.0.6.199", "8080"],
-      ["74.202.77.211", "80"],
-      ["52.21.159.43",  "80"],
-      ["162.243.55.213",  "8118"],
+      ["166.70.157.58", "80"],
     ]
   end
 
@@ -51,8 +47,6 @@ class DropCheckWorker
     else
       save_as_not_available(page_content, domain)
     end
-
-    raise "Checking drop again!"
   end
 
   def save_as_available(domain)
