@@ -1,8 +1,8 @@
 class WantedDomainsController < ApplicationController
   def index
-    beginning_of_today = DateTime.now.utc.beginning_of_day
-    beginning_of_tomorrow = beginning_of_today + 2.days
-    @domains_being_released_in_48_hours = WantedDomain.where(grace_period_ends_date: beginning_of_today..beginning_of_tomorrow, status_code: 0).order(:grace_period_ends_date)
+    todays_io_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    tomorrows_io_drop_time = todays_io_drop_time + 1.day
+    @domains_being_released_in_48_hours = WantedDomain.where(grace_period_ends_date: todays_io_drop_time..tomorrows_io_drop_time, status_code: 0).order(:grace_period_ends_date)
   end
 
   def show
@@ -29,9 +29,9 @@ class WantedDomainsController < ApplicationController
   end
 
   def expiring_within_month
-    beginning_of_today = DateTime.now.utc.beginning_of_day
-    one_month = beginning_of_today + 32.days
-    @domains_being_released_in_month = WantedDomain.where(grace_period_ends_date: beginning_of_today..one_month, status_code: 0).order(:grace_period_ends_date)
+    todays_io_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    one_month_drop_time = todays_io_drop_time + 30.days
+    @domains_being_released_in_month = WantedDomain.where(grace_period_ends_date: todays_io_drop_time..one_month_drop_time, status_code: 0).order(:grace_period_ends_date)
   end
 
   def all

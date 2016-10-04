@@ -2,9 +2,8 @@ class DropCheck < ApplicationRecord
   belongs_to :wanted_domain
 
   def self.check_availability_on_drop
-    hour_before_now = Time.now.utc - 1.hour
-    hour_after_now = Time.now.utc + 1.hour
-    domains_to_be_checked = WantedDomain.where(grace_period_ends_date: hour_before_now..hour_after_now)
+    todays_io_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    domains_to_be_checked = WantedDomain.where(grace_period_ends_date: todays_io_drop_time)
 
     domains_to_be_checked.each do |domain|
       DropCheckWorker.perform_async(domain.id)

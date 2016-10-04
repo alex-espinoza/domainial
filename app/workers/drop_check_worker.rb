@@ -65,6 +65,6 @@ class DropCheckWorker
     last_updated_date = page_content.css('table')[4].css('tr')[5].css('td')[1].text.to_datetime
     expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ')[0].to_datetime
 
-    DropCheck.create!(status_code: 1, wanted_domain: domain, first_registered_date: first_registered_date, last_updated_date: last_updated_date, expiry_date: expiry_date)
+    DropCheck.create!(status_code: 0, wanted_domain: domain, first_registered_date: first_registered_date, last_updated_date: last_updated_date, expiry_date: expiry_date)
   end
 end
