@@ -16,7 +16,7 @@ class ZlibParserDecorator
 end
 
 class DomainPurchaserWorker
-  def initialize(domain=nil)
+  def initialize(domain)
     # Test
     #@api_key = 'yoZCBxqi9oIzQ1H6KBkbAf5C'
     #@gandi_url = 'https://rpc.ote.gandi.net/xmlrpc/'
@@ -30,7 +30,7 @@ class DomainPurchaserWorker
     @parser = ZlibParserDecorator.new(@server.send(:parser))
     @server.set_parser(@parser)
 
-    @domain = domain || 'tank.io'
+    @domain = domain
     @gandi_handle = 'AE2501-GANDI'
     @domain_registration_info = {
       'owner' => @gandi_handle,
@@ -47,6 +47,7 @@ class DomainPurchaserWorker
       'admin'=> true
     }
     @op = nil
+    @drop_time = DateTime.now.utc.beginning_of_day + 30.minutes + 14.seconds
   end
 
   # def get_api_version_info
@@ -79,19 +80,37 @@ class DomainPurchaserWorker
   #   puts @server.call('contact.can_associate_domain', @api_key, @gandi_handle, @association_spec)
   # end
 
-  def purchase_domain
-    @server.call('domain.create', @api_key, @domain, @domain_registration_info)
+  def prepare_purchase_domain
+    sleep 5
+
+    while true
+      if DateTime.now.utc >= @drop_time
+        puts "TIME: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+        spam_purchase_domain
+        break
+      else
+        puts "NOT YET TIME: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+      end
+    end
   end
 
   def spam_purchase_domain
-    (1..100).each do |i|
+    10.times do |i|
       begin
-        puts "Attempt #{i}"
+        puts "Attempt #{i} " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
         response = purchase_domain
-        break if response['step'] == 'BILL'
+
+        if response['step'] == 'BILL'
+          puts "Attempt #{i} BILLED: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+          break
+        end
       rescue
         next
       end
     end
+  end
+
+  def purchase_domain
+    @server.call('domain.create', @api_key, @domain, @domain_registration_info)
   end
 end
