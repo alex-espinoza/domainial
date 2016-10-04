@@ -1,6 +1,7 @@
 class WantedDomain < ApplicationRecord
   has_many :drop_checks
   # checked? can have 3 states: 0 = not checked, 1 = checked, 2 = scheduled to be checked again
+  # interested? can have 2 states: 0 = not interested, 1 = interested
   # status_code can have 2 states: 0 = not available, 1 = available
   # backorder_status can have 2 states: 0 = not backordered, 1 = already backordered
   validates :name, uniqueness: { scope: :tld }
@@ -23,6 +24,14 @@ class WantedDomain < ApplicationRecord
 
   def is_backordered_css_class
     self.backorder_status == 1 ? 'table-warning' : ''
+  end
+
+  def is_interested_css_button_color
+    self.interested? == 1 ? 'btn-danger' : 'btn-success'
+  end
+
+  def is_interested_button_text
+    self.interested? == 1 ? 'Not Interested' : 'Interested'
   end
 
   def pretty_date(datetime)

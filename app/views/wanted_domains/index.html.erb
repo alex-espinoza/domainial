@@ -13,6 +13,7 @@
         <th>TLD</th>
         <th>Grace Period Ends</th>
         <th>Backorder</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
           <th><%= domain.tld %></th>
           <th><%= domain.pretty_date(domain.grace_period_ends_date) %></th>
           <th><%= domain.backorder %></th>
+          <th>
+            <button class="btn <%= domain.is_interested_css_button_color %> btn-sm interested-domain" value="<%= domain.id %>"><%= domain.is_interested_button_text %></button>
+          </th>
         </tr>
       <% end %>
     </tbody>

@@ -8,19 +8,17 @@ Helper application for owned domain name organization.
 `bundle install`
 `foreman start`
 
+## FEATURES TO ADD:
 
-# FEATURES TO ADD:
-
-- create script that reads from park IO API (http://blog.park.io/articles/park-io-api/) and adds domains that are currenty being auctioned - PARK IO SPY
-- create script that reads and saves park IOs last 50 sales (http://park.io/faq/ - end of page) - PARK IO SPY
 - install whenever to cronjob certain workers
 - change code to not save "." for tld
 - add button to re-check domain
 - add schema constraints to CompetitorDomain
 - create views to show competitor domain data
+- change drop checker to not exit when checking times, just reload page and save results again
+- start checking .to domains
 
-
-# PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
+## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
 - host main app on heroku
 - main app connects to RDS to use for PostgresDB
@@ -30,6 +28,16 @@ Helper application for owned domain name organization.
   - http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html
   - http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html (might just use javascript for the request)
 
-# IMPORTANT TIMES:
+## IMPORTANT TIMES:
 
 8:30 PM EST 0:30 UTC daily - .io domains are expired
+
+check millisecond time with `Model.find(1).created_at.strftime('%Y-%m-%d %H:%M:%S.%N')`
+
+8/3 EST MONDAY - 8/4 UTC 0:30 TUESDAY DROP
+LATEST TIME WHEN A DOMAIN WAS MARKED AS TAKEN: 30 min 12 seconds .430265000 milliseconds "resv.io" id: 55
+EARLIEST TIME WHEN A DOMAIN WAS MARKED AS AVAILABLE: 30 min 14 seconds .000004000 milliseconds "pushbutton.io" id: 56
+ANOTHER EARLY TIME: 30 min 14 seconds .160707000 milliseconds "socketio" id: 57
+EARLIEST TIME WHEN DROP.IO SEEMS TO BE ABLE TO REGISTER: 30 min 15 seconds .872203000 milliseconds "tencent.io" id: 58 - ALREADY BACKORDERED
+OTHER INTERESTING TIMES: 30 min 30 seconds "ade.io" id: 63
+TOTAL DROPPED DOMAINS: 70

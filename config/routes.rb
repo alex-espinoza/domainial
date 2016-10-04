@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     post 'wanted_domains/create', to: 'wanted_domains#create'
+    post 'wanted_domains/interested', to: 'wanted_domains#interested'
   end
 
   root to: 'wanted_domains#index'
