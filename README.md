@@ -10,13 +10,11 @@ Helper application for owned domain name organization.
 
 ## FEATURES TO ADD:
 
-- install whenever to cronjob certain workers
 - change code to not save "." for tld
 - add button to re-check domain
 - add schema constraints to CompetitorDomain
 - create views to show competitor domain data
-- change drop checker to not exit when checking times, just reload page and save results again
-- start checking .to domains
+- start handling and checking .to domains
 
 ## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
@@ -27,6 +25,10 @@ Helper application for owned domain name organization.
   - https://github.com/lorennorman/ruby-on-lambda
   - http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html
   - http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html (might just use javascript for the request)
+
+## IDEA FOR RUNNING MULTIPLE PURCHASE BOTS
+
+- use AWS Lambda to run the standalone ruby script to purchase domain, run at specific time
 
 ## IMPORTANT TIMES:
 
