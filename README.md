@@ -34,7 +34,7 @@ Helper application for owned domain name organization.
 
 check millisecond time with `Model.find(1).created_at.strftime('%Y-%m-%d %H:%M:%S.%N')`
 
-8/3 EST MONDAY - 8/4 UTC 0:30 TUESDAY DROP
+##8/3 EST MONDAY - 8/4 UTC 0:30 MONDAY EST DROP
 LATEST TIME WHEN A DOMAIN WAS MARKED AS TAKEN: 30 min 12 seconds .430265000 milliseconds "resv.io" id: 55
 EARLIEST TIME WHEN A DOMAIN WAS MARKED AS AVAILABLE: 30 min 14 seconds .000004000 milliseconds "pushbutton.io" id: 56
 ANOTHER EARLY TIME: 30 min 14 seconds .160707000 milliseconds "socketio" id: 57
@@ -43,3 +43,15 @@ OTHER INTERESTING TIMES: 30 min 30 seconds "ade.io" id: 63 - PARK.IO PICKUP
 TOTAL DROPPED DOMAINS: 70
 SUCCESSFUL TOTAL CATCH: 0
 FAILED TOTAL CATCH: 1
+
+##8/4 EST MONDAY - 8/5 UTC 0:30 TUESDAY EST DROP
+EARLIEST TIME WHEN A DOMAIN WAS MARKED AS AVAILABLE: 30 min 15 seconds .357101 milliseconds id: 466
+TOTAL DROPPED DOMAINS: 111
+SUCCESFUL TOTAL CATCH: 0
+FAILED TOTAL CATCH: 1
+
+- Notes
+Attempt 0 2016-10-04 20:30:14.000050000
+Attempt 1 2016-10-04 20:30:21.764378000
+^ drop log indicates there was a 7+ second wait between these two purchase attempts. may indicate server processed my request first,
+but i didn't have enough funds to make a successful transaction. perhaps 30 min 14 sec is the sweet spot, but lets try 30 min 13 secs
