@@ -47,7 +47,7 @@ class DomainPurchaserWorker
       'admin'=> true
     }
     @op = nil
-    @drop_time = DateTime.now.utc.beginning_of_day + 30.minutes + 14.seconds
+    @drop_time = DateTime.now.utc.beginning_of_day + 30.minutes + 13.seconds
   end
 
   # def get_api_version_info
