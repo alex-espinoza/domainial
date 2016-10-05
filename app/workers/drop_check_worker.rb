@@ -13,7 +13,7 @@ class DropCheckWorker
   def perform(domain_id)
     domain = WantedDomain.find(domain_id)
 
-    (1..40).each do
+    40.times do
       response = make_http_request(domain)
       page_content = get_page_content(response)
       check_availability(page_content, domain)
