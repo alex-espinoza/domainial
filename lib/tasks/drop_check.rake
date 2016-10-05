@@ -6,7 +6,7 @@ namespace :drop_check do
 
   desc 'Rev up the engines to purchase!'
   task purchase_domain: :environment do
-    dp = DomainPurchaserWorker.new('shc.io')
+    dp = DomainPurchaserWorker.new('definitely.io')
     dp.prepare_purchase_domain
   end
 end
