@@ -9,4 +9,16 @@ namespace :wanted_domains do
     n = NicIOReleasedTodayScraperWorker.new
     n.perform
   end
+
+  desc 'Check ExpiredDomains.net for domains pending delete'
+  task check_expired_domains_for_pending_delete: :environment do
+    ed = ExpiredDomainsPendingDeleteScraperWorker.new
+    ed.perform
+  end
+
+  desc 'Check ExpiredDomains.net for deleted domains'
+  task check_expired_domains_for_deleted: :environment do
+    ed = ExpiredDomainsDeletedScraperWorker.new
+    ed.perform
+  end
 end

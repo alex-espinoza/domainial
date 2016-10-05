@@ -36,4 +36,10 @@ every 1.day, at: '8:35 pm' do
   rake 'wanted_domains:check_nic_io_domains_released_today', environment: 'development', output: './log/nic_io_released_today_scraper_worker.log'
 end
 
-## Create expireddomains.net workers
+every 1.day, at: '12:00 am' do
+  rake 'wanted_domains:check_expired_domains_for_pending_delete', environment: 'development', output: './log/expired_domains_pending_delete_scraper_worker.log'
+end
+
+every 1.day, at: '12:10 am' do
+  rake 'wanted_domains:check_expired_domains_for_deleted', environment: 'development', output: './log/expired_domains_deleted_scraper_worker.log'
+end
