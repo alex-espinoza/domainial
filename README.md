@@ -54,4 +54,4 @@ FAILED TOTAL CATCH: 1
 Attempt 0 2016-10-04 20:30:14.000050000
 Attempt 1 2016-10-04 20:30:21.764378000
 ^ drop log indicates there was a 7+ second wait between these two purchase attempts. may indicate server processed my request first,
-but i didn't have enough funds to make a successful transaction. perhaps 30 min 14 sec is the sweet spot, but lets try 30 min 13 secs
+but i didn't have enough funds to make a successful transaction. perhaps 30 min 14 sec is the sweet spot, but lets try 30 min 13 secs or 30 min 13.5 secs
