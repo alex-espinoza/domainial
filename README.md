@@ -11,7 +11,6 @@ Helper application for owned domain name organization.
 ## FEATURES TO ADD:
 
 - change code to not save "." for tld
-- add button to re-check domain
 - add schema constraints to CompetitorDomain
 - create views to show competitor domain data
 - start handling and checking .to domains
