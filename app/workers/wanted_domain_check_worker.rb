@@ -53,7 +53,14 @@ class WantedDomainCheckWorker
     domain.update(checked?: 1,
                    status: 'Available',
                    status_code: 1,
-                   backorder_status: 0)
+                   backorder: nil,
+                   backorder_status: 0,
+                   first_registered_date: nil,
+                   last_updated_date: nil,
+                   expiry_date: nil,
+                   grace_period_ends_date: nil,
+                   owner_name: nil,
+                   organization_name: nil)
   end
 
   def save_as_not_available(page_content, domain)
