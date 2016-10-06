@@ -32,6 +32,9 @@ class WantedDomain < ApplicationRecord
 
   def is_interested_button_text
     self.interested? == 1 ? 'Not Interested' : 'Interested'
+
+  def is_being_checked_button_text
+    self.checked? == 1 ? 'Recheck' : 'Checking'
   end
 
   def pretty_date(datetime)

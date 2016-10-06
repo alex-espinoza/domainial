@@ -32,4 +32,5 @@
   <a href="http://app.park.io/domains/view/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">Park.io</a>
   <a href="https://app.park.io/orders/pay/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">Park.io Pay Now</a>
   <button class="btn <%= @wanted_domain.is_interested_css_button_color %> interested-domain" value="<%= @wanted_domain.id %>"><%= @wanted_domain.is_interested_button_text %></button>
+  <button class="btn btn-primary check-domain" value="<%= @wanted_domain.id %>"><%= @wanted_domain.is_being_checked_button_text %></button>
 </div>

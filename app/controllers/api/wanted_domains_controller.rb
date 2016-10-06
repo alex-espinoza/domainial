@@ -26,6 +26,16 @@ class Api::WantedDomainsController < ApplicationController
     else
       @wanted_domain.update(interested?: 0)
       json = {message: "'#{@wanted_domain.name}' has been unmarked as interested.", interested?: @wanted_domain.interested?, interested_text: @wanted_domain.is_interested_button_text}
+
+  def check
+    @wanted_domain = WantedDomain.find(wanted_domain_params[:id])
+
+    if @wanted_domain.checked? == 1
+      @wanted_domain.update(checked?: 2)
+      WantedDomainCheckWorker.perform_async(@wanted_domain.id)
+      json = {message: "'#{@wanted_domain.name_with_tld}' has been queued to be checked again.", checked?: @wanted_domain.checked?, checked_text: @wanted_domain.is_being_checked_button_text}
+    else
+      json = {message: "'#{@wanted_domain.name_with_tld}' is already in queue to be checked.", checked?: @wanted_domain.checked?, checked_text: @wanted_domain.is_being_checked_button_text}
     end
 
     render json: json,

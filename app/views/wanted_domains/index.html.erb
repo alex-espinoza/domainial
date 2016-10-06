@@ -25,6 +25,7 @@
           <th><%= domain.backorder %></th>
           <th>
             <button class="btn <%= domain.is_interested_css_button_color %> btn-sm interested-domain" value="<%= domain.id %>"><%= domain.is_interested_button_text %></button>
+            <button class="btn btn-primary btn-sm check-domain" value="<%= domain.id %>"><%= domain.is_being_checked_button_text %></button>
           </th>
         </tr>
       <% end %>

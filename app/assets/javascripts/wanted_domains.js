@@ -2,9 +2,23 @@
 // All this logic will automatically be available in application.js.
 
 $(function() {
-  $('.interested-domain').on('click', function(e) {
+  $('.interested-domain, .check-domain').on('click', function(e) {
     var $this = $(this);
     $this.attr('disabled', 'disabled');
+
+    if ($this.hasClass('interested-domain')) {
+      var url = '/api/wanted_domains/interested';
+      var disabledClass = 'disabled';
+      var toggleClasses = 'btn-success btn-danger';
+      var textField = 'interested_text';
+    }
+    else if ($this.hasClass('check-domain')) {
+      var url = '/api/wanted_domains/check';
+      var disabledClass = '';
+      var toggleClasses = '';
+      var textField = 'checked_text';
+    }
+
     var id = $this.val();
     var data = {
                  'wanted_domain': {
@@ -17,12 +31,12 @@ $(function() {
       data: JSON.stringify(data),
       dataType: 'json',
       method: 'POST',
-      url: '/api/wanted_domains/interested'
+      url: url
     })
     .done(function(response) {
-      $this.removeAttr('disabled');
-      $this.toggleClass('btn-success btn-danger');
-      $this.text(response['interested_text']);
+      $this.removeAttr(disabledClass);
+      $this.toggleClass(toggleClasses);
+      $this.text(response[textField]);
     })
     .fail(function(response) {
       $this.removeAttr('disabled');
