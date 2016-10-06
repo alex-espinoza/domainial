@@ -6,10 +6,10 @@ class Api::WantedDomainsController < ApplicationController
 
     if @wanted_domain.valid? && @wanted_domain.save
       WantedDomainCheckWorker.perform_async(@wanted_domain.id)
-      json = {message: "'#{@wanted_domain.name}' has been added as a wanted domain.", word: @wanted_domain.name}
+      json = {message: "'#{@wanted_domain.name_with_tld}' has been added as a wanted domain.", word: @wanted_domain.name}
       status = 200
     else
-      json = {error: "'#{@wanted_domain.name}' is already being tracked.", word: @wanted_domain.name}
+      json = {error: "'#{@wanted_domain.name_with_tld}' is already being tracked.", word: @wanted_domain.name}
       status = 409
     end
 
@@ -22,10 +22,15 @@ class Api::WantedDomainsController < ApplicationController
 
     if @wanted_domain.interested? == 0
       @wanted_domain.update(interested?: 1)
-      json = {message: "'#{@wanted_domain.name}' has been marked as interested.", interested?: @wanted_domain.interested?, interested_text: @wanted_domain.is_interested_button_text}
+      json = {message: "'#{@wanted_domain.name_with_tld}' has been marked as interested.", interested?: @wanted_domain.interested?, interested_text: @wanted_domain.is_interested_button_text}
     else
       @wanted_domain.update(interested?: 0)
-      json = {message: "'#{@wanted_domain.name}' has been unmarked as interested.", interested?: @wanted_domain.interested?, interested_text: @wanted_domain.is_interested_button_text}
+      json = {message: "'#{@wanted_domain.name_with_tld}' has been unmarked as interested.", interested?: @wanted_domain.interested?, interested_text: @wanted_domain.is_interested_button_text}
+    end
+
+    render json: json,
+           status: 200
+  end
 
   def check
     @wanted_domain = WantedDomain.find(wanted_domain_params[:id])
