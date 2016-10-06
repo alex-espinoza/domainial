@@ -19,11 +19,11 @@ class WantedDomain < ApplicationRecord
   end
 
   def is_available_css_class
-    self.status_code == 1 ? 'table-success' : ''
+    self.status_code == 1  && self.backorder_status != 1 ? 'table-success' : ''
   end
 
   def is_backordered_css_class
-    self.backorder_status == 1 ? 'table-warning' : ''
+    self.backorder_status == 1 && self.status_code != 1 ? 'table-warning' : ''
   end
 
   def is_interested_css_button_color
@@ -31,7 +31,8 @@ class WantedDomain < ApplicationRecord
   end
 
   def is_interested_button_text
-    self.interested? == 1 ? 'Not Interested' : 'Interested'
+    self.interested? == 1 ? 'Remove' : 'Interested'
+  end
 
   def is_being_checked_button_text
     self.checked? == 1 ? 'Recheck' : 'Checking'
