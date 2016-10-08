@@ -89,7 +89,7 @@ class DomainPurchaserWorker
         spam_purchase_domain
         break
       else
-        puts "NOT YET TIME: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+        #puts "NOT YET TIME: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
       end
     end
   end
