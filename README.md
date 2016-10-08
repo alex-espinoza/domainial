@@ -29,6 +29,9 @@ Helper application for owned domain name organization.
 ## IDEA FOR RUNNING MULTIPLE PURCHASE BOTS
 
 - use AWS Lambda to run the standalone ruby script to purchase domain, run at specific time
+  - https://www.krautcomputing.com/blog/2016/02/29/how-to-run-ruby-scripts-on-aws-lambda-using-ansible/
+  - http://www.adomokos.com/2016/06/using-ruby-with-activerecord-in-aws.html
+- perhaps look at running jruby for faster scripts
 
 ## IMPORTANT TIMES:
 
@@ -58,7 +61,7 @@ Attempt 1 2016-10-04 20:30:21.764378000
 ^ drop log indicates there was a 7+ second wait between these two purchase attempts. may indicate server processed my request first,
 but i didn't have enough funds to make a successful transaction. perhaps 30 min 14 sec is the sweet spot, but lets try 30 min 13 secs or 30 min 13.5 secs
 
-##8/5 EST MONDAY - 8/6 UTC 0:30 WEDNESDAY EST DROP
+##8/5 EST TUESDAY - 8/6 UTC 0:30 WEDNESDAY EST DROP
 TOTAL DROPPED DOMAINS: 131
 SUCCESFUL TOTAL CATCH: 1
 FAILED TOTAL CATCH: 0
@@ -67,3 +70,12 @@ FAILED TOTAL CATCH: 0
 Attempt 0 2016-10-05 20:30:13.000053000
 Attempt 0 BILLED: 2016-10-05 20:30:22.262051000
 ^ drop log indicates 9+ second wait between purchase attempt and successful server response. that leads me to believe yesterday's drop might have been successful. although, still need more data because the domain I was going for 'definitely.io' doesn't seem to have been contested. it is still available for purchase. will try again tomorrow at 30:13 secs.
+
+##8/6 EST WEDNESDAY - 8/7 UTC 0:30 THURSDAY EST DROP
+TOTAL DROPPED DOMAINS: 133
+SUCCESFUL TOTAL CATCH: 1
+FAILED TOTAL CATCH: 0
+
+- Notes
+^ drop log indicates 10+ second wait between purchase attempt and successful server response. 'definitely.io' forgot to change
+EARLIEST TIME WHEN A DOMAIN WAS MARKED AS AVAILABLE: 30 min 14 seconds .819 milliseconds id: 543 'glamorous.io'
