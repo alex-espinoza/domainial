@@ -26,13 +26,6 @@ Helper application for owned domain name organization.
   - http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html
   - http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html (might just use javascript for the request)
 
-## IDEA FOR RUNNING MULTIPLE PURCHASE BOTS
-
-- use AWS Lambda to run the standalone ruby script to purchase domain, run at specific time
-  - https://www.krautcomputing.com/blog/2016/02/29/how-to-run-ruby-scripts-on-aws-lambda-using-ansible/
-  - http://www.adomokos.com/2016/06/using-ruby-with-activerecord-in-aws.html
-- perhaps look at running jruby for faster scripts
-
 ## IMPORTANT TIMES:
 
 8:30 PM EST 0:30 UTC daily - .io domains are expired

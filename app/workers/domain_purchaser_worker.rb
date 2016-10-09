@@ -1,4 +1,7 @@
+#!/usr/bin/env ruby
+require 'json'
 require 'xmlrpc/client'
+require 'active_support/core_ext/numeric/time'
 XMLRPC::Config::ENABLE_NIL_PARSER = true
 
 class ZlibParserDecorator
@@ -47,42 +50,12 @@ class DomainPurchaserWorker
       'admin'=> true
     }
     @op = nil
-    @drop_time = DateTime.now.utc.beginning_of_day + 30.minutes + 13.seconds
+    # @drop_time = DateTime.now.utc.beginning_of_day + 30.minutes + 13.seconds
+    @drop_time = DateTime.now.utc.beginning_of_day + (30 * 60) + 13
   end
 
-  # def get_api_version_info
-  #   @server.call('version.info', @api_key)
-  # end
-
-  # def get_own_contact_info
-  #   @server.call('contact.list', @api_key)
-  # end
-
-  ### start here
-
-  # def check_if_domain_available
-  #   puts @server.call('domain.available', @api_key, [@domain]).inspect
-  #   puts Time.now.utc
-  # end
-
-  # def spam_check_domain
-  #   (1..50).each do |i|
-  #     begin
-  #       puts "Attempt #{i}"
-  #       check_if_domain_available
-  #     rescue
-  #       next
-  #     end
-  #   end
-  # end
-
-  # def choose_contact
-  #   puts @server.call('contact.can_associate_domain', @api_key, @gandi_handle, @association_spec)
-  # end
-
   def prepare_purchase_domain
-    sleep 5
-
+    puts "Preparing to purchase '#{@domain}'"
     while true
       if DateTime.now.utc >= @drop_time
         puts "TIME: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
@@ -95,13 +68,15 @@ class DomainPurchaserWorker
   end
 
   def spam_purchase_domain
+    sleep 0.5 # sleep for half a second in case domains are not released right on the second, tweak this to test puchase timing
+
     10.times do |i|
       begin
-        puts "Attempt #{i} " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+        puts "Attempt #{i}: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
         response = purchase_domain
 
         if response['step'] == 'BILL'
-          puts "Attempt #{i} BILLED: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+          puts "Attempt #{i} SUCCESSFUL: " + DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
           break
         end
       rescue
@@ -114,3 +89,10 @@ class DomainPurchaserWorker
     @server.call('domain.create', @api_key, @domain, @domain_registration_info)
   end
 end
+
+args = JSON.parse(ARGV[0])
+domain = args['domain']
+
+dpw = DomainPurchaserWorker.new(domain)
+dpw.prepare_purchase_domain
+

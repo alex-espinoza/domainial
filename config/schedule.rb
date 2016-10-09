@@ -8,7 +8,7 @@ every 1.day, at: '8:28 pm' do
   rake 'drop_check:prepare', environment: 'development', output: './log/drop_check_worker.log'
 end
 
-every 1.day, at: '8:30 pm' do
+every 1.day, at: '8:29 pm' do
   rake 'drop_check:purchase_domain', environment: 'development', output: './log/purchase_domain_worker.log'
 end
 
