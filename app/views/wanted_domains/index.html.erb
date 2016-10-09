@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @domains_being_released_in_48_hours.each do |domain| %>
+      <% @domains_being_released_in_next_day.each do |domain| %>
         <tr class="<%= domain.is_backordered_css_class %>">
           <th><%= link_to domain.name, wanted_domain_path(domain.id) %></th>
           <th><%= domain.tld %></th>
