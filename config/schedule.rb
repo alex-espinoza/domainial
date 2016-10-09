@@ -4,7 +4,7 @@
 
 ## Drop Check cron jobs
 
-every 1.day, at: '8:28 pm' do
+every 1.day, at: '8:29 pm' do
   rake 'drop_check:prepare', environment: 'development', output: './log/drop_check_worker.log'
 end
 
