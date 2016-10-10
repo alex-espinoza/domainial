@@ -1,5 +1,18 @@
 class WantedDomain < ApplicationRecord
   SUPPORTED_TLDS = ['io', 'to']
+  PROXY_LIST = [
+    ['97.77.104.22',  '80'],
+    ['192.151.147.178', '3128'],
+    ['173.161.0.227', '80'],
+    ['54.69.195.67',  '80'],
+    ['65.79.202.170', '3128'],
+    ['152.160.35.171',  '80'],
+    ['52.88.195.8', '80'],
+    ['47.88.138.190', '8080'],
+    ['97.107.129.183',  '80'],
+    ['45.32.138.150', '8080'],
+    ['104.236.54.155',  '8080'],
+  ]
 
   has_many :drop_checks
   # checked? can have 3 states: 0 = not checked, 1 = checked, 2 = scheduled to be checked again

@@ -18,20 +18,8 @@ class WantedDomainCheckWorker
     check_availability(page_content, domain)
   end
 
-  def proxy_list
-    [
-      ["50.255.198.141",  "8080"],
-      ["97.77.104.22",  "80"],
-      ["207.141.215.162", "3128"],
-      ["45.42.230.111", "8080"],
-      ["204.13.164.179",  "80"],
-      ["104.181.173.197", "8080"],
-      ["54.191.107.254",  "80"],
-    ]
-  end
-
   def make_http_request(domain)
-    random_proxy = proxy_list.sample
+    random_proxy = WantedDomain::PROXY_LIST.sample
     request_options = {timeout: 15, follow_redirects: false, http_proxyaddr: random_proxy[0], http_proxyport: random_proxy[1]}
 
     response = self.class.get("/#{domain.name_with_tld}", request_options)
