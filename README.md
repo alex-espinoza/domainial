@@ -12,6 +12,9 @@ Helper application for owned domain name organization.
 
 - start handling and checking .to domains
 
+- FOR WEB APP: ability to get auth transfer code, update whois info, update dns via gandi API
+ - http://doc.rpc.gandi.net/domain/index.html
+
 ## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
 - host main app on heroku

@@ -88,6 +88,11 @@ class DomainPurchaserWorker
   def purchase_domain
     @server.call('domain.create', @api_key, @domain, @domain_registration_info)
   end
+
+  # def get_transfer_authorization_code
+  #   info = @server.call("domain.info", @api_key, @domain)
+  #   info['authinfo']
+  # end
 end
 
 args = JSON.parse(ARGV[0])
