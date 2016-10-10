@@ -12,8 +12,13 @@ Helper application for owned domain name organization.
 
 - start handling and checking .to domains
 
-- FOR WEB APP: ability to get auth transfer code, update whois info, update dns via gandi API
- - http://doc.rpc.gandi.net/domain/index.html
+## FEATURES FOR USER FACING SERVICE:
+
+- ability to get auth transfer code, update whois info, update dns via gandi API (io domains)
+  - http://doc.rpc.gandi.net/domain/index.html
+- white label name servers (to have dns be ns1.myservice.com)
+  - http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html
+
 
 ## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
