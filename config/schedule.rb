@@ -32,8 +32,12 @@ end
 
 ## Wanted Domains cron jobs
 
-every 1.day, at: '8:35 pm' do
+every 1.day, at: '8:32 pm' do
   rake 'wanted_domains:check_nic_io_domains_released_today', environment: 'development', output: './log/nic_io_released_today_scraper_worker.log'
+end
+
+every 1.day, at: '8:35 pm' do
+  rake 'wanted_domains:recheck_all_recently_dropped_io_domains', environment: 'development', output: './log/recheck_all_recently_dropped_io_domains.log'
 end
 
 every 1.day, at: '12:00 am' do

@@ -10,8 +10,6 @@ Helper application for owned domain name organization.
 
 ## FEATURES TO ADD:
 
-- at 30 mins past drop, recheck status of all previous 0:30 drop domains
-- create views to show competitor domain data
 - start handling and checking .to domains
 
 ## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:

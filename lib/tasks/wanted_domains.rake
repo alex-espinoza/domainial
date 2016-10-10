@@ -21,4 +21,14 @@ namespace :wanted_domains do
     ed = ExpiredDomainsDeletedScraperWorker.new
     ed.perform
   end
+
+  desc 'Recheck status of all io domains that were recently dropped'
+  task recheck_all_recently_dropped_io_domains: :environment do
+    todays_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    recently_dropped_domains = WantedDomain.where(tld: 'io', grace_period_ends_date: todays_drop_time)
+
+    recently_dropped_domains.each do |domain|
+      WantedDomainCheckWorker.perform_async(domain.id)
+    end
+  end
 end
