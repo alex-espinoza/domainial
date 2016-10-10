@@ -6,7 +6,7 @@ namespace :drop_check do
 
   desc 'Rev up the engines to purchase!'
   task purchase_domain: :environment do
-    todays_io_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    todays_io_drop_time = WantedDomain.io_drop_time
     interested_domains = WantedDomain.where(grace_period_ends_date: todays_io_drop_time, interested?: 1)
     aws_lambda = Aws::Lambda::Client.new
 

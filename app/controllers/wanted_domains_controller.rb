@@ -1,6 +1,6 @@
 class WantedDomainsController < ApplicationController
   def index
-    todays_io_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    todays_io_drop_time = WantedDomain.io_drop_time
     tomorrows_io_drop_time = todays_io_drop_time + 1.day
 
     if Time.now.utc < todays_io_drop_time
@@ -34,7 +34,7 @@ class WantedDomainsController < ApplicationController
   end
 
   def expiring_within_month
-    todays_io_drop_time = Time.now.utc.beginning_of_day + 30.minutes
+    todays_io_drop_time = WantedDomain.io_drop_time
     one_month_drop_time = todays_io_drop_time + 30.days
     @domains_being_released_in_month = WantedDomain.where(grace_period_ends_date: todays_io_drop_time..one_month_drop_time, status_code: 0).order(:grace_period_ends_date)
   end

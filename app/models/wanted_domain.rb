@@ -31,6 +31,10 @@ class WantedDomain < ApplicationRecord
     end
   end
 
+  def self.io_drop_time
+    Time.now.utc.beginning_of_day + 30.minutes
+  end
+
   def name_with_tld
     "#{self.name}.#{self.tld}"
   end
