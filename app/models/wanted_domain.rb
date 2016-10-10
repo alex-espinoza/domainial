@@ -27,7 +27,7 @@ class WantedDomain < ApplicationRecord
     domains_to_be_checked = WantedDomain.where(checked?: [0, 2])
 
     domains_to_be_checked.each do |domain|
-      WantedDomainCheckWorker.perform_async(domain.id)
+      WantedDomainCheckEnqueuer.queue(domain.tld, domain.id)
     end
   end
 

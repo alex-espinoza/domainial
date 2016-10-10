@@ -1,4 +1,4 @@
-class WantedDomainCheckWorker
+class IODomainCheckWorker
   include HTTParty
   include Sidekiq::Worker
   base_uri 'http://www.nic.io/go/whois'

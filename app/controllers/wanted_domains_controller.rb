@@ -16,6 +16,7 @@ class WantedDomainsController < ApplicationController
 
   def new
     @wanted_domain = WantedDomain.new
+    @tlds = WantedDomain::SUPPORTED_TLDS
   end
 
   def create
@@ -24,7 +25,7 @@ class WantedDomainsController < ApplicationController
     @wanted_domain.tld = @wanted_domain.tld.strip.downcase
 
     if @wanted_domain.valid? && @wanted_domain.save
-      WantedDomainCheckWorker.perform_async(@wanted_domain.id)
+      WantedDomainCheckEnqueuer.queue(@wanted_domain.tld, @wanted_domain.id)
       flash[:success] = "#{@wanted_domain.name_with_tld} added."
       redirect_to wanted_domains_all_path
     else

@@ -28,7 +28,7 @@ namespace :wanted_domains do
     recently_dropped_domains = WantedDomain.where(tld: 'io', grace_period_ends_date: todays_drop_time)
 
     recently_dropped_domains.each do |domain|
-      WantedDomainCheckWorker.perform_async(domain.id)
+      WantedDomainCheckEnqueuer.queue(domain.tld, domain.id)
     end
   end
 end

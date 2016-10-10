@@ -4,8 +4,9 @@
   <%= form_for @wanted_domain, url: {action: 'create'} do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
-    <%= f.label :tld %>
-    <%= f.text_field :tld %>
+    <%= fields_for :wanted_domain do |field| %>
+      <%= field.select :tld, options_for_select(@tlds) %>
+    <% end %>
     <%= f.submit 'Submit', class: 'btn btn-primary' %>
   <% end %>
 </div>

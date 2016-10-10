@@ -5,7 +5,7 @@ class Api::WantedDomainsController < ApplicationController
     @wanted_domain.tld = @wanted_domain.tld.strip.downcase
 
     if @wanted_domain.valid? && @wanted_domain.save
-      WantedDomainCheckWorker.perform_async(@wanted_domain.id)
+      WantedDomainCheckEnqueuer.queue(@wanted_domain.tld, @wanted_domain.id)
       json = { message: "'#{@wanted_domain.name_with_tld}' has been added as a wanted domain.",
                word: @wanted_domain.name,
                tld: @wanted_domain.tld
@@ -49,7 +49,7 @@ class Api::WantedDomainsController < ApplicationController
 
     if @wanted_domain.checked? == 1
       @wanted_domain.update(checked?: 2)
-      WantedDomainCheckWorker.perform_async(@wanted_domain.id)
+      WantedDomainCheckEnqueuer.queue(@wanted_domain.tld, @wanted_domain.id)
       json = { message: "'#{@wanted_domain.name_with_tld}' has been queued to be checked again.",
                checked?: @wanted_domain.checked?,
                checked_text: @wanted_domain.is_being_checked_button_text

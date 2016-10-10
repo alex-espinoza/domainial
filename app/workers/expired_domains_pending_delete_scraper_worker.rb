@@ -43,7 +43,7 @@ class ExpiredDomainsPendingDeleteScraperWorker
     wanted_domain = WantedDomain.new(name: domain_array[0], tld: "#{domain_array[1]}")
 
     if wanted_domain.valid? && wanted_domain.save
-      WantedDomainCheckWorker.perform_async(wanted_domain.id)
+      WantedDomainCheckEnqueuer.queue(wanted_domain.tld, wanted_domain.id)
     end
   end
 
