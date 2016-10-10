@@ -10,6 +10,7 @@ class DictionariesController < ApplicationController
     exact_word_length = params[:search_field_numbers][:exact_word_length]
     limit = params[:search_field_numbers][:number_of_results] || 20
 
+    @tlds = WantedDomain::SUPPORTED_TLDS
     @words = Dictionary.where('word LIKE :prefix', prefix: starting_letters)
 
     if exact_word_length

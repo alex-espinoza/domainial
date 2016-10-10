@@ -6,9 +6,11 @@ $(function() {
     var $this = $(this);
     $this.attr('disabled', 'disabled');
     var word = $this.val();
+    var tld = $this.siblings('select').val();
     var data = {
                  'wanted_domain': {
-                   'name': word
+                   'name': word,
+                   'tld': tld
                  }
                };
 
@@ -21,9 +23,19 @@ $(function() {
     })
     .done(function(response) {
       $this.toggleClass('btn-secondary btn-success');
+
+      setTimeout(function() {
+        $this.toggleClass('btn-secondary btn-success');
+        $this.removeAttr('disabled');
+      }, 1500);
     })
     .fail(function(response) {
       $this.toggleClass('btn-secondary btn-warning');
+
+      setTimeout(function() {
+        $this.toggleClass('btn-secondary btn-warning');
+        $this.removeAttr('disabled');
+      }, 1500);
     })
   });
 });

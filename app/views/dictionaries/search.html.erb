@@ -12,7 +12,14 @@
         <tr>
           <th><a href="<%= word.definition_url %>" target="_blank"><%= word.word %></a></th>
           <th><%= word.first_character %></th>
-          <th><button class="btn btn-secondary btn-sm track-domain" value="<%= word.word %>">Track</button></th>
+          <th>
+            <select name="tld">
+              <% @tlds.each do |tld| %>
+                <option value="<%= tld %>"><%= tld %></option>
+              <% end %>
+            </select>
+            <button class="btn btn-secondary btn-sm track-domain" value="<%= word.word %>">Track</button>
+          </th>
         </tr>
       <% end %>
     </tbody>
