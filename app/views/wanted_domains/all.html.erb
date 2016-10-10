@@ -1,8 +1,5 @@
 <div class="container wanted-domains-container">
-  <nav class="nav nav-inline">
-    <%= link_to 'New', new_wanted_domain_path, class: 'nav-link btn btn-outline-primary' %>
-    <%= link_to 'Check All', wanted_domains_check_all_path, class: 'nav-link btn btn-outline-primary' %>
-  </nav>
+  <%= render "navigation" %>
 
   <table class="table table-hover table-striped">
     <thead>

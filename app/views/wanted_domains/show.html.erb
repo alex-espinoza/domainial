@@ -1,8 +1,5 @@
 <div class="container wanted-domains-container">
-  <nav class="nav nav-inline">
-    <%= link_to 'See All', wanted_domains_all_path, class: 'nav-link btn btn-outline-primary' %>
-    <%= link_to 'Within Month', wanted_domains_expiring_within_month_path, class: 'nav-link btn btn-outline-primary' %>
-  </nav>
+  <%= render "navigation" %>
 
   <h1 class="list-inline-item"><%= @wanted_domain.name_with_tld %></h1><a href="http://<%= @wanted_domain.name_with_tld %>" target="_blank"><span class="tag tag-primary">&nearr;</span></a>
 
