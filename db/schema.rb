@@ -10,22 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004034708) do
+ActiveRecord::Schema.define(version: 20161010043726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "competitor_domains", force: :cascade do |t|
-    t.string   "name"
-    t.string   "tld"
+    t.string   "name",               null: false
+    t.string   "tld",                null: false
     t.integer  "number_of_bids"
-    t.integer  "price"
+    t.integer  "price",              null: false
     t.datetime "auction_end_date"
     t.datetime "auction_start_date"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "active"
-    t.string   "source"
+    t.integer  "active",             null: false
+    t.string   "source",             null: false
     t.datetime "sold_date"
   end
 
