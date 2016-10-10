@@ -55,6 +55,10 @@ class WantedDomain < ApplicationRecord
     self.checked? == 1 ? 'Recheck' : 'Checking'
   end
 
+  def disable_if_being_checked
+    self.checked? == 1 ? '' : 'disabled'
+  end
+
   def pretty_date(datetime)
     (datetime && datetime.to_formatted_s(:long)) || ''
   end

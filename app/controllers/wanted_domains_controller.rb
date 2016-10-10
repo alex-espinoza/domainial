@@ -39,6 +39,10 @@ class WantedDomainsController < ApplicationController
     @domains_being_released_in_month = WantedDomain.where(grace_period_ends_date: todays_io_drop_time..one_month_drop_time, status_code: 0).order(:grace_period_ends_date)
   end
 
+  def interested
+    @interested_domains = WantedDomain.where(interested?: 1).order(:grace_period_ends_date)
+  end
+
   def all
     @wanted_domains = WantedDomain.all.order(id: :desc)
   end
