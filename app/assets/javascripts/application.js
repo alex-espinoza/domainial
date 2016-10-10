@@ -17,7 +17,7 @@
 //= require bootstrap
 //= require_tree .
 
-$(function() {
+$(document).on('turbolinks:load', function() {
   function updateCurrentTime() {
     var currentTime = new Date().toUTCString();
     $('#current-time').text(currentTime);

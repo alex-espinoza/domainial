@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('.track-domain').on('click', function(e) {
     var $this = $(this);
     $this.attr('disabled', 'disabled');
