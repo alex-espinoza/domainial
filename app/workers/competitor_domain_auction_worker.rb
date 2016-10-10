@@ -12,7 +12,7 @@ class CompetitorDomainAuctionWorker
     domain_array = auction['name'].split('.')
 
     competitor_domain = CompetitorDomain.where(name: domain_array[0],
-                                               tld: ".#{domain_array[1]}",
+                                               tld: "#{domain_array[1]}",
                                                source: source,
                                                active: 1).first
 
@@ -23,7 +23,7 @@ class CompetitorDomainAuctionWorker
                                            auction_start_date: DateTime.strptime(auction['created'], '%Y-%d-%m'))
     else
       CompetitorDomain.create(name: domain_array[0],
-                              tld: ".#{domain_array[1]}",
+                              tld: "#{domain_array[1]}",
                               number_of_bids: auction['num_bids'].to_i,
                               price: auction['price'].to_i,
                               auction_end_date: DateTime.strptime(auction['close_date'], '%Y-%d-%m'),

@@ -1,10 +1,14 @@
 class WantedDomain < ApplicationRecord
+  SUPPORTED_TLDS = ['io', 'to']
+
   has_many :drop_checks
   # checked? can have 3 states: 0 = not checked, 1 = checked, 2 = scheduled to be checked again
   # interested? can have 2 states: 0 = not interested, 1 = interested
   # status_code can have 2 states: 0 = not available, 1 = available
   # backorder_status can have 2 states: 0 = not backordered, 1 = already backordered
+  validates :name, :tld, :checked?, :interested?, presence: true
   validates :name, uniqueness: { scope: :tld }
+  validates :tld, inclusion: { in: SUPPORTED_TLDS }
 
   def self.queue_all_unchecked
     domains_to_be_checked = WantedDomain.where(checked?: [0, 2])
@@ -15,7 +19,7 @@ class WantedDomain < ApplicationRecord
   end
 
   def name_with_tld
-    "#{self.name}#{self.tld}"
+    "#{self.name}.#{self.tld}"
   end
 
   def is_available_css_class

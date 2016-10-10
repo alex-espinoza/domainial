@@ -21,7 +21,7 @@ class WantedDomainsController < ApplicationController
   def create
     @wanted_domain = WantedDomain.new(wanted_domain_params)
     @wanted_domain.name = @wanted_domain.name.strip.downcase
-    @wanted_domain.tld = '.io'
+    @wanted_domain.tld = @wanted_domain.tld.strip.downcase
 
     if @wanted_domain.valid? && @wanted_domain.save
       WantedDomainCheckWorker.perform_async(@wanted_domain.id)
@@ -53,6 +53,6 @@ class WantedDomainsController < ApplicationController
   private
 
   def wanted_domain_params
-    params.require(:wanted_domain).permit(:name)
+    params.require(:wanted_domain).permit(:name, :tld)
   end
 end

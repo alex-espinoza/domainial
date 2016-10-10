@@ -12,7 +12,7 @@ class CompetitorDomainSoldWorker
     domain_array = domain.split('.')
 
     CompetitorDomain.first_or_create(name: domain_array[0],
-                                     tld: ".#{domain_array[1]}",
+                                     tld: "#{domain_array[1]}",
                                      sold_date: date.to_datetime,
                                      price: price.to_i,
                                      active: 0,
