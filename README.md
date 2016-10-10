@@ -11,7 +11,6 @@ Helper application for owned domain name organization.
 ## FEATURES TO ADD:
 
 - at 30 mins past drop, recheck status of all previous 0:30 drop domains
-- add schema constraints to CompetitorDomain
 - create views to show competitor domain data
 - start handling and checking .to domains
 
