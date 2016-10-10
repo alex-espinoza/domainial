@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'wanted_domains/all', to: 'wanted_domains#all'
   resources :wanted_domains, only: [:index, :show, :new, :create]
 
+  resources :competitor_domains, only: [:index]
+
   namespace :api, defaults: {format: :json} do
     post 'wanted_domains/create', to: 'wanted_domains#create'
     post 'wanted_domains/interested', to: 'wanted_domains#interested'
