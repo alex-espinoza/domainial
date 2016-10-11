@@ -4,7 +4,7 @@ class WantedDomainCheckEnqueuer
     when 'io'
       IODomainCheckWorker.perform_async(domain_id)
     when 'to'
-      #to
+      TODomainCheckWorker.perform_async(domain_id)
     end
   end
 end
