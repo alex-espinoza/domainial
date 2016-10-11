@@ -10,7 +10,7 @@ Helper application for owned domain name organization.
 
 ## FEATURES TO ADD:
 
-- start handling and checking .to domains
+- start handling and checking .to, .in, .me, .us, .ly domains (all namehack domains)
 
 ## FEATURES FOR USER FACING SERVICE:
 
@@ -18,7 +18,6 @@ Helper application for owned domain name organization.
   - http://doc.rpc.gandi.net/domain/index.html
 - white label name servers (to have dns be ns1.myservice.com)
   - http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html
-
 
 ## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
@@ -33,6 +32,14 @@ Helper application for owned domain name organization.
 ## IMPORTANT TIMES:
 
 8:30 PM EST 0:30 UTC daily - .io domains are expired
+
+Thu   13:19:07 UTC CREATED - Sat 3:28:39 UTC EXPIRES
+Sat    3:27:49 UTC CREATED - Sun 3:27:49 UTC EXPIRES
+Sun    3:28:35 UTC CREATED - Mon 3:28:35 UTC EXPIRES
+Mon   13:45:37 UTC CREATED - Thu 3:27:39 UTC EXPIRES
+Tue    3:27:55 UTC CREATED - Wed 3:27:55 UTC EXPIRES
+Tue    3:28:29 UTC CREATED - Wed 3:28:29 UTC EXPIRES
+- .to domains are expired
 
 check millisecond time with `Model.find(1).created_at.strftime('%Y-%m-%d %H:%M:%S.%N')`
 
