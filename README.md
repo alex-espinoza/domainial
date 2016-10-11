@@ -11,6 +11,7 @@ Helper application for owned domain name organization.
 ## FEATURES TO ADD:
 
 - start handling and checking .to, .in, .me, .us, .ly domains (all namehack domains)
+- make `wanted_domains:recheck_all_recently_dropped_io_domains` wotk with .to domains
 
 ## FEATURES FOR USER FACING SERVICE:
 
