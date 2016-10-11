@@ -47,3 +47,7 @@ end
 every 1.day, at: '12:10 am' do
   rake 'wanted_domains:check_expired_domains_for_deleted', environment: 'development', output: './log/expired_domains_deleted_scraper_worker.log'
 end
+
+every 1.day, at: '12:15 am' do
+  rake 'wanted_domains:check_fresh_drop_for_pending_delete', environment: 'development', output: './log/fresh_drop_pending_delete_scraper_worker.log'
+end

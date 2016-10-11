@@ -22,6 +22,12 @@ namespace :wanted_domains do
     ed.perform
   end
 
+  desc 'Check Freshdrop.com for domains pending delete'
+  task check_fresh_drop_for_pending_delete: :environment do
+    fd = FreshDropPendingDeleteScraperWorker.new
+    fd.perform
+  end
+
   desc 'Recheck status of all io domains that were recently dropped'
   task recheck_all_recently_dropped_io_domains: :environment do
     todays_drop_time = WantedDomain.io_drop_time
