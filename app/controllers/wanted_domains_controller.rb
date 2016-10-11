@@ -4,10 +4,12 @@ class WantedDomainsController < ApplicationController
     tomorrows_io_drop_time = todays_io_drop_time + 1.day
 
     if Time.now.utc < todays_io_drop_time
-      @domains_being_released_in_next_day = WantedDomain.where(grace_period_ends_date: todays_io_drop_time, status_code: 0).order(:name)
+      @io_domains_being_released_in_next_day = WantedDomain.where(tld: 'io', grace_period_ends_date: todays_io_drop_time, status_code: 0).order(:name)
     else
-      @domains_being_released_in_next_day = WantedDomain.where(grace_period_ends_date: tomorrows_io_drop_time, status_code: 0).order(:name)
+      @io_domains_being_released_in_next_day = WantedDomain.where(tld: 'io', grace_period_ends_date: tomorrows_io_drop_time, status_code: 0).order(:name)
     end
+
+    @to_domains_being_released_in_next_day = WantedDomain.where(tld: 'to', grace_period_ends_date: Time.now.utc.beginning_of_day..Time.now.utc.end_of_day, status_code: 0).order(:grace_period_ends_date)
   end
 
   def show

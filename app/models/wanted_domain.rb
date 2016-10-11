@@ -39,6 +39,15 @@ class WantedDomain < ApplicationRecord
     "#{self.name}.#{self.tld}"
   end
 
+  def whois_link_for_tld
+    case self.tld
+    when 'io'
+      "http://nic.io/go/whois/#{self.name_with_tld}"
+    when 'to'
+      "https://www.tonic.to/whois?#{self.name_with_tld}"
+    end
+  end
+
   def is_available_css_class
     self.status_code == 1  && self.backorder_status != 1 ? 'table-success' : ''
   end

@@ -22,7 +22,7 @@
     <dd><%= @wanted_domain.organization_name %></dd>
   </dl>
 
-  <a href="http://nic.io/go/whois/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">WHOIS</a>
+  <a href="<%= @wanted_domain.whois_link_for_tld %>" target="_blank" class="btn btn-primary">WHOIS</a>
   <a href="http://dnpric.es/?q=<%= @wanted_domain.name %>" target="_blank" class="btn btn-primary">DNPric.es</a>
   <a href="http://similarweb.com/website/<%= @wanted_domain.name_with_tld %>" target="_blank" class="btn btn-primary">SimilarWeb</a>
   <a href="http://estibot.com" target="_blank" class="btn btn-primary">Estibot</a>

@@ -1,7 +1,7 @@
 <div class="container wanted-domains-container">
   <%= render "navigation" %>
 
-  <h1>Domains being released in the next day</h1>
+  <h1>.io domains being released in the next day</h1>
 
   <table class="table table-hover table-striped">
     <thead>
@@ -14,7 +14,35 @@
       </tr>
     </thead>
     <tbody>
-      <% @domains_being_released_in_next_day.each do |domain| %>
+      <% @io_domains_being_released_in_next_day.each do |domain| %>
+        <tr class="<%= domain.is_backordered_css_class %>">
+          <th><%= link_to domain.name, wanted_domain_path(domain.id) %></th>
+          <th><%= domain.tld %></th>
+          <th><%= domain.pretty_date(domain.grace_period_ends_date) %></th>
+          <th><%= domain.backorder %></th>
+          <th>
+            <button class="btn <%= domain.is_interested_css_button_color %> btn-sm interested-domain" value="<%= domain.id %>"><%= domain.is_interested_button_text %></button>
+            <button class="btn btn-primary btn-sm check-domain" value="<%= domain.id %>"><%= domain.is_being_checked_button_text %></button>
+          </th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h1>.to domains being released in the next day</h1>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>TLD</th>
+        <th>Grace Period Ends</th>
+        <th>Backorder</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @to_domains_being_released_in_next_day.each do |domain| %>
         <tr class="<%= domain.is_backordered_css_class %>">
           <th><%= link_to domain.name, wanted_domain_path(domain.id) %></th>
           <th><%= domain.tld %></th>
