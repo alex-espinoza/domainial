@@ -1,4 +1,4 @@
-class DropCheckWorker
+class IODropCheckWorker
   include HTTParty
   include Sidekiq::Worker
   base_uri 'http://www.nic.io/go/whois'
@@ -46,7 +46,6 @@ class DropCheckWorker
   end
 
   def save_as_not_available(page_content, domain)
-    status = page_content.css('table')[4].css('tr')[3].css('td')[1].text
     first_registered_date = page_content.css('table')[4].css('tr')[4].css('td')[1].text.to_datetime
     last_updated_date = page_content.css('table')[4].css('tr')[5].css('td')[1].text.to_datetime
     expiry_date = page_content.css('table')[4].css('tr')[6].css('td')[1].text.split(' ')[0].to_datetime
