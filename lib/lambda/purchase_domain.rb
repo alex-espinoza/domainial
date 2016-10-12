@@ -68,7 +68,7 @@ class DomainPurchaserWorker
   end
 
   def spam_purchase_domain
-    sleep 0.5 # sleep for half a second in case domains are not released right on the second, tweak this to test puchase timing
+    sleep 0 # sleep for some time in case domains are not released right on the second, tweak this to test puchase timing
 
     10.times do |i|
       begin
