@@ -28,6 +28,12 @@ namespace :wanted_domains do
     fd.perform
   end
 
+  desc 'Check Park.io for domains pending delete'
+  task check_park_io_for_pending_delete: :environment do
+    pi = ParkIOPendingDeleteAPIWorker.new
+    pi.perform
+  end
+
   desc 'Recheck status of all io domains that were recently dropped'
   task recheck_all_recently_dropped_io_domains: :environment do
     todays_drop_time = WantedDomain.io_drop_time

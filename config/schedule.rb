@@ -55,3 +55,7 @@ end
 every 1.day, at: '12:15 am' do
   rake 'wanted_domains:check_fresh_drop_for_pending_delete', environment: 'development', output: './log/fresh_drop_pending_delete_scraper_worker.log'
 end
+
+every 1.day, at: '12:20 am' do
+  rake 'wanted_domains:check_park_io_for_pending_delete', environment: 'development', output: './log/park_io_pending_delete_api_worker.log'
+end
