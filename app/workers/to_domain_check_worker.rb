@@ -20,7 +20,8 @@ class TODomainCheckWorker
 
   def make_http_request(domain)
     random_proxy = WantedDomain::PROXY_LIST.sample
-    request_options = {timeout: 15, follow_redirects: false, http_proxyaddr: random_proxy[0], http_proxyport: random_proxy[1]}
+    #request_options = {timeout: 15, follow_redirects: false, http_proxyaddr: random_proxy[0], http_proxyport: random_proxy[1]}
+    request_options = {timeout: 15, follow_redirects: false}
 
     response = self.class.get("#{domain.name_with_tld}", request_options)
   end
