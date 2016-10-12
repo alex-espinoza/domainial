@@ -6,7 +6,7 @@ class DropCheck < ApplicationRecord
     domains_to_be_checked = WantedDomain.where(tld: 'io', grace_period_ends_date: todays_io_drop_time, interested?: 1)
 
     domains_to_be_checked.each do |domain|
-      DropCheckEnqueuer.perform_async(domain.tld, domain.id)
+      DropCheckEnqueuer.queue(domain.tld, domain.id)
     end
   end
 
@@ -14,7 +14,7 @@ class DropCheck < ApplicationRecord
     domains_to_be_checked = WantedDomain.where(tld: 'to', grace_period_ends_date: Time.now.utc.beginning_of_day..Time.now.utc.end_of_day, interested?: 1)
 
     domains_to_be_checked.each do |domain|
-      DropCheckEnqueuer.perform_async(domain.tld, domain.id)
+      DropCheckEnqueuer.queue(domain.tld, domain.id)
     end
   end
 end
