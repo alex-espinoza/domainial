@@ -12,6 +12,8 @@ Helper application for owned domain name organization.
 
 - start handling and checking .to, .in, .me, .us, .ly domains (all namehack domains)
 - make `wanted_domains:recheck_all_recently_dropped_io_domains` wotk with .to domains
+- use AWS KMS to store api keys for lambda script
+  - http://stackoverflow.com/questions/29372278/aws-lambda-how-to-store-secret-to-external-api
 
 ## FEATURES FOR USER FACING SERVICE:
 
@@ -19,6 +21,8 @@ Helper application for owned domain name organization.
   - http://doc.rpc.gandi.net/domain/index.html
 - white label name servers (to have dns be ns1.myservice.com)
   - http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html
+- terms of conditions
+  - https://termsfeed.com/
 
 ## PLAN TO HOST CHEAPLY AND WITHOUT RUNNING EVERYONE LOCALLY:
 
@@ -34,12 +38,7 @@ Helper application for owned domain name organization.
 
 8:30 PM EST 0:30 UTC daily - .io domains are expired
 
-Thu   13:19:07 UTC CREATED - Sat 3:28:39 UTC EXPIRES
-Sat    3:27:49 UTC CREATED - Sun 3:27:49 UTC EXPIRES
-Sun    3:28:35 UTC CREATED - Mon 3:28:35 UTC EXPIRES
-Mon   13:45:37 UTC CREATED - Thu 3:27:39 UTC EXPIRES
-Tue    3:27:55 UTC CREATED - Wed 3:27:55 UTC EXPIRES
-Tue    3:28:29 UTC CREATED - Wed 3:28:29 UTC EXPIRES
+3:27 - 3:29 UTC is the earliest time they have been picked up... might be easier to make drop catches that check every hour as they don't actually expire at the time the WHOIS say they do
 - .to domains are expired
 
 check millisecond time with `Model.find(1).created_at.strftime('%Y-%m-%d %H:%M:%S.%N')`
@@ -84,3 +83,8 @@ FAILED TOTAL CATCH: 0
 - Notes
 ^ drop log indicates 10+ second wait between purchase attempt and successful server response. 'definitely.io' forgot to change
 EARLIEST TIME WHEN A DOMAIN WAS MARKED AS AVAILABLE: 30 min 14 seconds .819 milliseconds id: 543 'glamorous.io'
+
+##8/11 EST WEDNESDAY - 8/12 UTC 0:30 MONDAY EST DROP
+
+- Notes
+I don't think domains drop at 30:13:5 seconds, will try at 13 seconds past 30 mins
