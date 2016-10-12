@@ -1,4 +1,4 @@
-class DropCheckCheckEnqueuer
+class DropCheckEnqueuer
   def self.queue(domain_tld, domain_id)
     case domain_tld
     when 'io'
