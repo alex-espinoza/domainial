@@ -31,6 +31,7 @@ class WantedDomainsController < ApplicationController
       flash[:success] = "#{@wanted_domain.name_with_tld} added."
       redirect_to wanted_domains_all_path
     else
+      @tlds = WantedDomain::SUPPORTED_TLDS
       flash.now[:error] = @wanted_domain.errors.full_messages.to_sentence
       render action: 'new'
     end
