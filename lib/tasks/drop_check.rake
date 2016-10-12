@@ -1,7 +1,12 @@
 namespace :drop_check do
-  desc 'Prepare interested wanted domains to collect drop check information'
-  task prepare: :environment do
-    DropCheck.check_availability_on_drop
+  desc 'Prepare interested io domains to collect drop check information'
+  task prepare_io_check: :environment do
+    DropCheck.check_io_availability_on_drop
+  end
+
+  desc 'Prepare interested to domains to collect drop check information'
+  task prepare_to_check: :environment do
+    DropCheck.check_to_availability
   end
 
   desc 'Rev up the engines to purchase!'
