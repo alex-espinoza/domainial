@@ -12,12 +12,11 @@ namespace :drop_check do
   desc 'Rev up the engines to purchase!'
   task purchase_domain: :environment do
     todays_io_drop_time = WantedDomain.io_drop_time
-    #interested_domains = WantedDomain.where(tld: 'io', grace_period_ends_date: todays_io_drop_time, interested?: 1)
-    interested_domains = WantedDomain.where(id: [1437, 1444])
+    interested_domains = WantedDomain.where(tld: 'io', grace_period_ends_date: todays_io_drop_time, interested?: 1)
     aws_lambda = Aws::Lambda::Client.new
 
     interested_domains.each do |domain|
-      5.times do
+      3.times do
         payload = {domain: domain.name_with_tld}
 
         aws_lambda.invoke({
