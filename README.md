@@ -38,8 +38,7 @@ Helper application for owned domain name organization.
 
 8:30 PM EST 0:30 UTC daily - .io domains are expired
 
-3:27 - 3:29 UTC is the earliest time they have been picked up... might be easier to make drop catches that check every hour as they don't actually expire at the time the WHOIS say they do
-- .to domains are expired
+3:27 - 3:29 UTC +13 around 10:30 AM EST daily - .to domains are expired
 
 check millisecond time with `Model.find(1).created_at.strftime('%Y-%m-%d %H:%M:%S.%N')`
 
