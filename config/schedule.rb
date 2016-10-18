@@ -8,7 +8,7 @@
 #   rake 'drop_check:prepare_io_check', environment: 'development', output: './log/drop_check_worker.log'
 # end
 
-every 10.minutes do
+every 1.minutes do
   rake 'drop_check:prepare_to_check', environment: 'development', output: './log/drop_check_worker.log'
 end
 
