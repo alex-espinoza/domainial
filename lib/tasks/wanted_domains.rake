@@ -43,4 +43,13 @@ namespace :wanted_domains do
       WantedDomainCheckEnqueuer.queue(domain.tld, domain.id)
     end
   end
+
+  desc 'Recheck status of all to domains that were recently dropped'
+  task recheck_all_recently_dropped_to_domains: :environment do
+    recently_dropped_domains = WantedDomain.where(tld: 'to', grace_period_ends_date: Time.now.utc.beginning_of_day..Time.now.utc.end_of_day)
+
+    recently_dropped_domains.each do |domain|
+      WantedDomainCheckEnqueuer.queue(domain.tld, domain.id)
+    end
+  end
 end

@@ -44,6 +44,12 @@ every 1.day, at: '8:35 pm' do
   rake 'wanted_domains:recheck_all_recently_dropped_io_domains', environment: 'development', output: './log/recheck_all_recently_dropped_io_domains.log'
 end
 
+every 1.day, at: '10:35 am' do
+  rake 'wanted_domains:recheck_all_recently_dropped_to_domains', environment: 'development', output: './log/recheck_all_recently_dropped_to_domains.log'
+end
+
+#create a recheck_all_dropped_to_domains that runs at 12AM
+
 every 1.day, at: '12:00 am' do
   rake 'wanted_domains:check_expired_domains_for_pending_delete', environment: 'development', output: './log/expired_domains_pending_delete_scraper_worker.log'
 end
